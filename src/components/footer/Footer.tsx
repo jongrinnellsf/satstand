@@ -76,6 +76,7 @@ export default function Footer() {
               </span>
             </NavbarLink>
           </div> */}
+          
         </div>
 
         {/* <div className="container mx-auto flex w-full gap-8 px-8 text-base font-normal leading-7">
