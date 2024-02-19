@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import QRCode from 'react-qr-code';
 import Button from '../../components/Button/Button';
 import { useAccount } from 'wagmi';
-import { CheckIcon } from '@radix-ui/react-icons';
 
 
 const products = [
