@@ -33,8 +33,7 @@ export default function Button({
         variant === 'primary' ? 'bg-white' : 'bg-black',
         variant === 'secondary' ? 'bg-[#1c1b1b]' : null,
         variant === 'sky' ? 'bg-gradient-to-b from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 active:from-orange-700 active:to-pink-700' : null, // Use top-to-bottom gradient for the 'gray' variant
-        variant === 'blue' ? 'bg-[#529CF8] hover:bg-[#417AC4] active:bg-[#2F5890]' : null, // Use #529CF8 for the custom variant
-      // Add gray variant styles
+        variant === 'blue' ? 'bg-[#529CF8] hover:bg-[#417AC4] active:bg-[#2F5890]' : null, 
         variant === 'primary' ? 'text-black' : 'text-white',
         disabled && variant === 'primary' ? 'bg-gray-400' : null,
         disabled && variant === 'secondary' ? 'bg-boat-color-gray-900' : null,

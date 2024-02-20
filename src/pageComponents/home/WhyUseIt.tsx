@@ -78,10 +78,10 @@ const ProductCard = ({ name, price, updateProductData }: ProductCardProps) => {
     }
   }, [address, price]);
 
-  // const decrement = () => {
-  //   setQuantity(quantity - 1 > 0 ? quantity - 1 : 0);
-  //   updateProductData(name, discountedPrice, quantity - 1);
-  // };
+  const decrement = () => {
+    setQuantity(quantity - 1 > 0 ? quantity - 1 : 0);
+    updateProductData(name, discountedPrice, quantity - 1);
+  };
 
   return (
     
@@ -94,7 +94,7 @@ const ProductCard = ({ name, price, updateProductData }: ProductCardProps) => {
 
       <div className="relative mx-4 mt-4 overflow-hidden text-gray-700 bg-white bg-clip-border rounded-xl h-96">
         <img
-          src="https://images.unsplash.com/photo-1629367494173-c78a56567877?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=927&q=80"
+          src="https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9647.jpg?v=1707459629"
           alt="product image" className="object-cover w-full h-full" />
       </div>
       <div className="p-6">
@@ -180,7 +180,7 @@ export default function WhyUseIt() {
       "metadata": {
         "products": productsDataToSend
       },
-      // "redirect_url": "http://localhost:3000/mint"
+      "redirect_url": "https://satstand.vercel.app/mint"
     });
 
     const requestOptions = {

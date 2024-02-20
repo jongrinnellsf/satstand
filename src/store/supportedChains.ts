@@ -6,7 +6,7 @@ export const SUPPORTED_CHAINS: Record<Environment, [Chain, ...Chain[]]> = {
   [Environment.localhost]: [baseSepolia],
   [Environment.development]: [baseSepolia],
   [Environment.staging]: [base, baseSepolia],
-  [Environment.production]: [base, baseSepolia],
+  [Environment.production]: [base],
 };
 
 /**

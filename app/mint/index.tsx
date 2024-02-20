@@ -24,9 +24,9 @@ export default function MintPage() {
     <>
       <Header />
       <main className="container mx-auto flex flex-col px-8 py-6">
-        <Banner pageName="Mint NFT" pageUrl="mint" />
+        {/* <Banner pageName="Mint NFT" pageUrl="mint" /> */}
         <MintContractDemo />
-        <Guide />
+        {/* <Guide /> */}
       </main>
     </>
   );
