@@ -3,6 +3,8 @@ import React, { useState, useEffect } from 'react';
 import QRCode from 'react-qr-code';
 import Button from '../../components/Button/Button';
 import { useAccount } from 'wagmi';
+import { CheckIcon } from '@radix-ui/react-icons';
+
 
 
 const products = [
@@ -36,7 +38,7 @@ const checkNFTOwnership = async (walletAddress: string) => {
   //0x9340204616750cb61e56437befc95172c6ff6606 = FarCats
 
   try {
-    const response = await fetch(`https://api.simplehash.com/api/v0/nfts/contracts?chains=ethereum,base&wallet_addresses=${walletAddress}&contract_addresses=0x9340204616750cb61e56437befc95172c6ff6606,0x9D90669665607F08005CAe4A7098143f554c59EF`, {
+    const response = await fetch(`https://api.simplehash.com/api/v0/nfts/contracts?chains=ethereum,base&wallet_addresses=${walletAddress}&contract_addresses=0xB3Da098a7251A647892203e0C256b4398d131a54,0x9D90669665607F08005CAe4A7098143f554c59EF`, {
       method: 'GET',
       headers: headers
     });
@@ -102,9 +104,20 @@ const ProductCard = ({ name, price, updateProductData }: ProductCardProps) => {
           <p className="block font-sans text-base antialiased font-medium leading-relaxed text-blue-gray-900">
             {name}
           </p>
-          <p className="block font-sans text-base antialiased font-medium leading-relaxed text-blue-gray-900">
-            ${discountedPrice.toFixed(2)}
-          </p>
+          {discount > 0 ? (
+    <>
+      <p className="block font-sans text-base antialiased font-medium leading-relaxed text-gray-500 line-through">
+        ${price.toFixed(2)}
+      </p>
+      <p className="block font-sans text-base antialiased font-medium leading-relaxed text-green-500">
+        ${discountedPrice.toFixed(2)}
+      </p>
+    </>
+  ) : (
+    <p className="block font-sans text-base antialiased font-medium leading-relaxed text-blue-gray-900">
+      ${price.toFixed(2)}
+    </p>
+  )}
         </div>
         <p className="block font-sans text-sm antialiased font-normal leading-normal text-gray-700 opacity-75">
           {/* Description can be added here if needed */}
@@ -212,13 +225,41 @@ export default function WhyUseIt() {
   };
 
   return (
-    
+    <>
+    <section className="mb-24 flex flex-col items-center justify-center">
+    <div className="w-full md:w-4/5">
+      <h2 className="mb-14 text-center text-xl font-medium text-white md:text-2xl lg:text-3xl">
+        Save 10% by holding one of these NFTs. Save 15% by holding both.
+      </h2>
+      <ul className="items-left flex flex-col justify-center">
+        <li className="inline-flex items-center justify-start gap-4">
+          <CheckIcon width="24" height="24" />
+          <span className="font-inter text-xl font-normal leading-7 text-white">
+            {' '}
+            <a href="https://www.standwithcrypto.org/" target="_blank">
+            Stand with crypto
+            </a>{' '}
+            🛡️ 
+          </span>
+        </li>
+        <li className="mt-5 inline-flex items-center justify-start gap-4">
+          <CheckIcon width="24" height="24" />
+          <span className="font-inter text-xl font-normal leading-7 text-white">
+            Eth L2 support through{' '}
+            <a href="https://www.mintapenny.xyz/" target="_blank">
+              Mint a penny
+            </a>{' '}
+            💰
+          </span>
+        </li>
+      </ul>
+    </div>
+  </section>
     <div className="flex flex-wrap justify-start md:justify-start p-2">
     {products.map((product, index) => (
       <div key={`${product.name}-${index}`} className="p-2 w-full sm:w-auto">
         <ProductCard key={`${product.name}-${resetKey}`} name={product.name} price={product.price} updateProductData={updateProductData} />
       </div>
-
 
       ))}
       <div className="flex flex-col items-center justify-center mt-4 w-full">
@@ -262,6 +303,6 @@ export default function WhyUseIt() {
           </div>
         </div>
       )}
-    </div>
+    </div></>
   );
 }

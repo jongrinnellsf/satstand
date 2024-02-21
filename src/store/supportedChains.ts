@@ -3,9 +3,13 @@ import { Environment, getCurrentEnvironment } from './environment';
 
 // The list of supported Chains for a given environment
 export const SUPPORTED_CHAINS: Record<Environment, [Chain, ...Chain[]]> = {
-  [Environment.localhost]: [baseSepolia],
-  [Environment.development]: [baseSepolia],
-  [Environment.staging]: [base, baseSepolia],
+  // [Environment.localhost]: [baseSepolia],
+  // [Environment.development]: [baseSepolia],
+  // [Environment.staging]: [base, baseSepolia],
+  // [Environment.production]: [base],
+  [Environment.localhost]: [base],
+  [Environment.development]: [base],
+  [Environment.staging]: [base],
   [Environment.production]: [base],
 };
 
