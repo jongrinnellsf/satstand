@@ -88,11 +88,13 @@ const ProductCard = ({ name, price, updateProductData }: ProductCardProps) => {
   return (
     
     <div className="relative flex flex-col text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-full sm:w-96">
+      
             {discount > 0 && (
         <div className="p-2 bg-green-500 text-black text-sm">
           Congratulations! A {discount}% discount has been applied.
         </div>
       )}
+      
 
       <div className="relative mx-4 mt-4 overflow-hidden text-gray-700 bg-white bg-clip-border rounded-xl h-96">
         <img
@@ -123,19 +125,17 @@ const ProductCard = ({ name, price, updateProductData }: ProductCardProps) => {
           {/* Description can be added here if needed */}
         </p>
       </div>
-      <div className="p-6 pt-0">
-        <Button
-          onClick={increment}
-          // buttonContent="Add to Cart"
-          buttonContent={quantity > 0 ? `Added ${quantity}x` : "Add to Cart"}
+      <div className="flex items-center justify-center space-x-2 p-4">
+  <button onClick={decrement} className="flex items-center justify-center h-10 w-10 rounded-full border border-gray-300 bg-gray-100 text-xl font-bold hover:bg-gray-200 shadow">-</button>
+  <div className="flex items-center justify-center border border-gray-300 text-xl font-semibold w-20 h-10">{quantity}</div>
+  <button onClick={increment} className="flex items-center justify-center h-10 w-10 rounded-full border border-gray-300 bg-gray-100 text-xl font-bold hover:bg-gray-200 shadow">+</button>
+</div>
 
-          variant="sky" // Use the new 'sky' variant
-          className="text-black" // Add text color and font classes
-        />
-      </div>
     </div>
+    
   );
 };
+
 
 export default function WhyUseIt() {
   const [totalPrice, setTotalPrice] = useState(0);
@@ -169,6 +169,15 @@ export default function WhyUseIt() {
       alert("Total price is 0. Please add items to your cart before checking out.");
       return;
     }
+
+    // Floating Checkout Button
+
+
+
+
+
+
+
     const comKey = process.env.NEXT_PUBLIC_X_CC_API_KEY ?? '';
 
     const myHeaders = new Headers();
@@ -245,7 +254,7 @@ export default function WhyUseIt() {
         <li className="mt-5 inline-flex items-center justify-start gap-4">
           <CheckIcon width="24" height="24" />
           <span className="font-inter text-xl font-normal leading-7 text-white">
-            Eth L2 support through{' '}
+            
             <a href="https://www.mintapenny.xyz/" target="_blank">
               Mint a penny
             </a>{' '}

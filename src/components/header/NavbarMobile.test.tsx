@@ -13,7 +13,7 @@ describe('NavbarMobile', () => {
         <NavbarMobile />
       </OnchainProviders>,
     );
-    expect(screen.getByText('BUILD ONCHAIN APPS')).toBeInTheDocument();
+    expect(screen.getByText('Satoshis Stand')).toBeInTheDocument();
   });
 
   it('clicking the hamburger icon opens the navbar menu', async () => {

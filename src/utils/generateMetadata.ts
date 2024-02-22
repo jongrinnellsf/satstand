@@ -15,7 +15,7 @@ const defaultUrl = deployUrl
   : `http://localhost:${process.env.PORT ?? 3000}`;
 
 export const generateMetadata = ({
-  title = 'Build Onchain Apps',
+  title = 'Saotshis Stand',
   description = 'The easier way to build onchain apps.',
   frame = {},
   images,

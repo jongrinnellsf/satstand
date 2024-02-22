@@ -11,7 +11,7 @@ export default function HomeHeader() {
       <div className={styles.HomeHeaderGradient} />
       <Header />
       <div className="flex flex-col items-center justify-center">
-        
+
         <h1 className={clsx(styles.HomeHeaderHeadline, 'font-robotoMono')}>
           BUY
           <br />
@@ -28,7 +28,7 @@ export default function HomeHeader() {
         </div>
 
       </div>
-      <div className={styles.HomeHeaderWaves}>
+      {/* <div className={styles.HomeHeaderWaves}>
         <div className={styles.homeBoatContainer}>
           <div className={styles.homeBoatInnerContainer}>
             <div className={styles.homeBoatLeftSail} />
@@ -61,7 +61,7 @@ export default function HomeHeader() {
             <use xlinkHref="#boat-wave" x="48" y="7" fill="rgba(82, 174, 255, 0.3)" />
           </g>
         </svg>
-      </div>
+      </div> */}
     </div>
   );
 }
