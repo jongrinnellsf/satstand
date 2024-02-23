@@ -97,7 +97,7 @@ const ProductCard = ({ name, price, updateProductData }: ProductCardProps) => {
       </div>
       <div className="p-6">
         <div className="flex items-center justify-between mb-2">
-          <p className="block font-sans text-base antialiased font-medium leading-relaxed text-blue-gray-900">
+          <p className="block font-sans text-base antialiased font-medium leading-relaxed text-white">
             {name}
           </p>
           {discount > 0 ? (
@@ -110,7 +110,7 @@ const ProductCard = ({ name, price, updateProductData }: ProductCardProps) => {
               </p>
             </>
           ) : (
-            <p className="block font-sans text-base antialiased font-medium leading-relaxed text-blue-gray-900">
+            <p className="block font-sans text-base antialiased font-medium leading-relaxed text-white">
               ${price.toFixed(2)}
             </p>
           )}
@@ -122,7 +122,7 @@ const ProductCard = ({ name, price, updateProductData }: ProductCardProps) => {
       </div>
       <div className="flex items-center justify-center space-x-2 p-4">
         <button onClick={decrement} className="flex items-center justify-center h-10 w-10 rounded-full border border-gray-300 bg-gray-100 text-xl font-bold hover:bg-gray-200 shadow">{<MinusIcon />}</button>
-        <div className="flex items-center justify-center border border-gray-300 text-xl font-semibold w-20 h-10">{quantity}</div>
+        <div className="flex items-center justify-center border border-gray-300 text-xl text-white font-semibold w-20 h-10">{quantity}</div>
         <button onClick={increment} className="flex items-center justify-center h-10 w-10 rounded-full border border-gray-300 bg-gray-100 text-xl font-bold hover:bg-gray-200 shadow"> {<PlusIcon />}</button>
       </div>
 
