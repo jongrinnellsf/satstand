@@ -89,11 +89,11 @@ const ProductCard = ({ name, price, updateProductData }: ProductCardProps) => {
     
     <div className="relative flex flex-col text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-full sm:w-96">
       
-            {discount > 0 && (
+            {/* {discount > 0 && (
         <div className="p-2 bg-green-500 text-black text-sm">
           Congratulations! A {discount}% discount has been applied.
         </div>
-      )}
+      )} */}
       
 
       <div className="relative mx-4 mt-4 overflow-hidden text-gray-700 bg-white bg-clip-border rounded-xl h-96">
@@ -236,6 +236,7 @@ export default function WhyUseIt() {
   return (
     <>
     <section className="mb-24 flex flex-col items-center justify-center">
+      
     <div className="w-full md:w-4/5">
       <h2 className="mb-14 text-center text-xl font-medium text-white md:text-2xl lg:text-3xl">
         Save 10% by holding one of these NFTs. Save 15% by holding both.
@@ -262,6 +263,7 @@ export default function WhyUseIt() {
           </span>
         </li>
       </ul>
+      
     </div>
   </section>
     <div className="flex flex-wrap justify-start md:justify-start p-2">

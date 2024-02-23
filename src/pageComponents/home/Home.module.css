@@ -19,9 +19,10 @@
   z-index: -1;
   top: 0;
   left: 0;
+  opacity: 0.5;
   width: 100vw;
   height: var(--home-header-height);
-  background-image: url('https://media.discordapp.net/attachments/1109253398110416897/1210348293000003665/jkg.eth_minimal_binary_code_matrix_style_white_text_with_black__8895fd02-c1a7-493e-913a-63a56f09577d.png?ex=65ea3bb0&is=65d7c6b0&hm=ba4b91d038055c7aa38374ea46a5a7b4bdae63b000130a3b918739e5a45819b4&=&format=webp&quality=lossless&width=980&height=980'); /* Update with the path to your image */
+  background-image: url('https://media.discordapp.net/attachments/1109253398110416897/1210375087971115018/jkg.eth_glitch_art_matrix_code_binary_in_the_essence_of_Dan_Fla_b32a36e7-5cf4-4c49-b865-c4515c077877.png?ex=65ea54a4&is=65d7dfa4&hm=9dd4ebc1fb6d2b07ff26a9d005cc4babfa538875cf2115df4a7faf536c436572&=&format=webp&quality=lossless&width=700&height=700'); /* Update with the path to your image */
   background-size: cover; /* Cover the entire space of the element */
   background-position: center; /* Center the image within the element */
   background-repeat: no-repeat; /* Do not repeat the image */
