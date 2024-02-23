@@ -1,10 +1,12 @@
-
 import React, { useState, useEffect } from 'react';
 import QRCode from 'react-qr-code';
 import Button from '../../components/Button/Button';
 import { useAccount } from 'wagmi';
 import { CheckIcon } from '@radix-ui/react-icons';
-
+import { Cross1Icon } from '@radix-ui/react-icons';
+import { ReloadIcon } from '@radix-ui/react-icons';
+import { PlusIcon } from '@radix-ui/react-icons';
+import { MinusIcon } from '@radix-ui/react-icons';
 
 
 const products = [
@@ -13,7 +15,7 @@ const products = [
   { name: "Sample Hoodie", price: 0.2 },
   { name: "Base Logo Hat", price: 20 },
   { name: "Onchain summer sunglasses", price: 25 },
-  // Add the rest of your products here...
+  // Add the rest of products here...
 ];
 
 interface ProductCardProps {
@@ -86,15 +88,7 @@ const ProductCard = ({ name, price, updateProductData }: ProductCardProps) => {
   };
 
   return (
-    
-    <div className="relative flex flex-col text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-full sm:w-96">
-      
-            {/* {discount > 0 && (
-        <div className="p-2 bg-green-500 text-black text-sm">
-          Congratulations! A {discount}% discount has been applied.
-        </div>
-      )} */}
-      
+    <div className="relative flex flex-col text-gray-700 bg-[#141519] shadow-md bg-clip-border border-1 border-white rounded-xl w-full sm:w-96">
 
       <div className="relative mx-4 mt-4 overflow-hidden text-gray-700 bg-white bg-clip-border rounded-xl h-96">
         <img
@@ -107,32 +101,33 @@ const ProductCard = ({ name, price, updateProductData }: ProductCardProps) => {
             {name}
           </p>
           {discount > 0 ? (
-    <>
-      <p className="block font-sans text-base antialiased font-medium leading-relaxed text-gray-500 line-through">
-        ${price.toFixed(2)}
-      </p>
-      <p className="block font-sans text-base antialiased font-medium leading-relaxed text-green-500">
-        ${discountedPrice.toFixed(2)}
-      </p>
-    </>
-  ) : (
-    <p className="block font-sans text-base antialiased font-medium leading-relaxed text-blue-gray-900">
-      ${price.toFixed(2)}
-    </p>
-  )}
+            <>
+              <p className="block font-sans text-base antialiased font-medium leading-relaxed text-gray-500 line-through">
+                ${price.toFixed(2)}
+              </p>
+              <p className="block font-sans text-base antialiased font-medium leading-relaxed text-green-500">
+                ${discountedPrice.toFixed(2)}
+              </p>
+            </>
+          ) : (
+            <p className="block font-sans text-base antialiased font-medium leading-relaxed text-blue-gray-900">
+              ${price.toFixed(2)}
+            </p>
+          )}
         </div>
         <p className="block font-sans text-sm antialiased font-normal leading-normal text-gray-700 opacity-75">
           {/* Description can be added here if needed */}
+          
         </p>
       </div>
       <div className="flex items-center justify-center space-x-2 p-4">
-  <button onClick={decrement} className="flex items-center justify-center h-10 w-10 rounded-full border border-gray-300 bg-gray-100 text-xl font-bold hover:bg-gray-200 shadow">-</button>
-  <div className="flex items-center justify-center border border-gray-300 text-xl font-semibold w-20 h-10">{quantity}</div>
-  <button onClick={increment} className="flex items-center justify-center h-10 w-10 rounded-full border border-gray-300 bg-gray-100 text-xl font-bold hover:bg-gray-200 shadow">+</button>
-</div>
+        <button onClick={decrement} className="flex items-center justify-center h-10 w-10 rounded-full border border-gray-300 bg-gray-100 text-xl font-bold hover:bg-gray-200 shadow">{<MinusIcon />}</button>
+        <div className="flex items-center justify-center border border-gray-300 text-xl font-semibold w-20 h-10">{quantity}</div>
+        <button onClick={increment} className="flex items-center justify-center h-10 w-10 rounded-full border border-gray-300 bg-gray-100 text-xl font-bold hover:bg-gray-200 shadow"> {<PlusIcon />}</button>
+      </div>
 
     </div>
-    
+
   );
 };
 
@@ -170,16 +165,7 @@ export default function WhyUseIt() {
       return;
     }
 
-    // Floating Checkout Button
-
-
-
-
-
-
-
     const comKey = process.env.NEXT_PUBLIC_X_CC_API_KEY ?? '';
-
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     myHeaders.append("Accept", "application/json");
@@ -209,7 +195,7 @@ export default function WhyUseIt() {
       method: "POST",
       headers: myHeaders,
       body: raw,
-      redirect: "follow" as RequestRedirect // Corrected line
+      redirect: "follow" as RequestRedirect 
     };
 
     try {
@@ -235,85 +221,96 @@ export default function WhyUseIt() {
 
   return (
     <>
-    <section className="mb-24 flex flex-col items-center justify-center">
-      
-    <div className="w-full md:w-4/5">
-      <h2 className="mb-14 text-center text-xl font-medium text-white md:text-2xl lg:text-3xl">
-        Save 10% by holding one of these NFTs. Save 15% by holding both.
-      </h2>
-      <ul className="items-left flex flex-col justify-center">
-        <li className="inline-flex items-center justify-start gap-4">
-          <CheckIcon width="24" height="24" />
-          <span className="font-inter text-xl font-normal leading-7 text-white">
-            {' '}
-            <a href="https://www.standwithcrypto.org/" target="_blank">
-            Stand with crypto
-            </a>{' '}
-            🛡️ 
-          </span>
-        </li>
-        <li className="mt-5 inline-flex items-center justify-start gap-4">
-          <CheckIcon width="24" height="24" />
-          <span className="font-inter text-xl font-normal leading-7 text-white">
-            
-            <a href="https://www.mintapenny.xyz/" target="_blank">
-              Mint a penny
-            </a>{' '}
-            💰
-          </span>
-        </li>
-      </ul>
-      
-    </div>
-  </section>
-    <div className="flex flex-wrap justify-start md:justify-start p-2">
-    {products.map((product, index) => (
-      <div key={`${product.name}-${index}`} className="p-2 w-full sm:w-auto">
-        <ProductCard key={`${product.name}-${resetKey}`} name={product.name} price={product.price} updateProductData={updateProductData} />
-      </div>
+      <section className="mb-24 flex flex-col items-center justify-center">
 
-      ))}
-      <div className="flex flex-col items-center justify-center mt-4 w-full">
-        <Button
-          // buttonContent="Checkout"
-          buttonContent={totalQuantity > 0 ? `CHECKOUT ${totalQuantity} item${totalQuantity !== 1 ? 's' : ''}` : 'CHECKOUT'}
+        <div className="w-full md:w-4/5">
+          <h2 className="mb-14 text-center text-xl font-medium text-white md:text-2xl lg:text-3xl">
+            Save 10% by holding one of these NFTs. Save 15% by holding both.
+          </h2>
+          <ul className="items-left flex flex-col justify-center">
+            <li className="inline-flex items-center justify-start gap-4">
+              <CheckIcon width="24" height="24" />
+              <span className="font-inter text-xl font-normal leading-7 text-white">
+                {' '}
+                <a href="https://www.standwithcrypto.org/" target="_blank">
+                  Stand with crypto
+                </a>{' '}
+                🛡️
+              </span>
+            </li>
+            <li className="mt-5 inline-flex items-center justify-start gap-4">
+              <CheckIcon width="24" height="24" />
+              <span className="font-inter text-xl font-normal leading-7 text-white">
 
-          onClick={handleCheckout}
-          variant="primary"
-          // className="w-full md:w-1/2 text-mono" // 100% width on mobile, 50% width on desktop
-          className="w-full md:w-1/2" // Add font-mono and font-bold classes
+                <a href="https://www.mintapenny.xyz/" target="_blank">
+                  Mint a penny
+                </a>{' '}
+                💰
+              </span>
+            </li>
+          </ul>
 
-        />
-        <Button
-          buttonContent="RESET CART"
-          onClick={handleReset}
-          variant='secondary'
-          className="flex w-full md:w-1/2 items-center justify-center py-4 text-sm text-white rounded-full my-4 " // 100% width on mobile, 50% width on desktop
-        />
-      </div>
-      {isModalOpen && (
-        <div
-          className="fixed inset-0 w-full h-full bg-black bg-opacity-100 flex justify-center items-center px-4 py-8 z-50"
-          onClick={closeModal} // This will close the modal when the backdrop is clicked
-        >
-          <div
-            className="w-full max-w-lg rounded-lg flex flex-col items-center text-white overflow-auto"
-            onClick={(e) => e.stopPropagation()} // This prevents the click from propagating to the backdrop
-          >
-            <div className="text-lg font-semibold mb-4">Your Order:</div>
-            <ul className="mb-4">
-              {purchasedProducts.map((product, index) => (
-                <li key={index}>{`${product.name} (${product.quantity}x)`}</li>
-              ))}
-            </ul>
-            <div className="text-lg font-semibold mb-4">Subtotal: ${totalPrice.toFixed(2)}</div>
-            <div className="p-4 bg-white rounded-lg">
-              <QRCode value={qrCodeValue} size={256} />
-            </div>
-            <Button buttonContent="PAY" onClick={() => window.open(hostedUrl, '_blank')} className="flex w-4/5 bg-green-500 items-center justify-center py-4 text-sm bg-white text-black rounded-full my-4 bg-white" />
-          </div>
         </div>
-      )}
-    </div></>
+      </section>
+      <div className="flex flex-wrap justify-start md:justify-start p-2">
+        {products.map((product, index) => (
+          <div key={`${product.name}-${index}`} className="p-2 w-full sm:w-auto">
+            <ProductCard key={`${product.name}-${resetKey}`} name={product.name} price={product.price} updateProductData={updateProductData} />
+          </div>
+
+        ))}
+        <div className="flex flex-col items-center justify-center mt-4 w-full">
+          {totalQuantity > 0 && (
+            <div className="fixed bottom-0 left-0 right-0 p-4 bg-black shadow-md rounded-t-[25px] flex flex-col items-center">
+              <Button
+                buttonContent={`CHECKOUT ${totalQuantity} item${totalQuantity !== 1 ? 's' : ''}`}
+                onClick={handleCheckout}
+                variant="sky"
+                className="w-full md:w-1/2 font-bold rounded-[25px] my-2"
+              />
+              <Button
+                buttonContent={<><ReloadIcon style={{ marginRight: '5px' }} /> RESET CART</>}
+                onClick={handleReset}
+                variant='primary'
+                className="w-full md:w-1/2 flex items-center justify-center py-4 text-sm text-black rounded-full my-2"
+              />
+            </div>
+          )}
+        </div>
+        {isModalOpen && (
+          <div
+            className="fixed inset-0 w-full h-full bg-black bg-opacity-100 flex justify-center items-center px-4 py-8 z-50"
+            onClick={closeModal}
+          >
+            <div
+              className="w-full max-w-lg rounded-lg flex flex-col items-center text-white overflow-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                className="absolute top-4 right-6 text-white text-2xl font-bold cursor-pointer"
+                onClick={closeModal}
+              >
+                <Cross1Icon width="24" height="24" />
+              </button>
+              <div className="text-lg font-semibold mb-4">Your Order:</div>
+              <ul className="mb-4">
+                {purchasedProducts.map((product, index) => (
+                  <li key={index}>{`${product.name} (${product.quantity}x)`}</li>
+                ))}
+              </ul>
+              <div className="text-lg font-semibold mb-4">Subtotal: ${totalPrice.toFixed(2)}</div>
+              <div className="p-4 bg-white rounded-lg">
+                <QRCode value={qrCodeValue} size={256} />
+              </div>
+              <Button
+                buttonContent="PAY"
+                onClick={() => window.open(hostedUrl, '_blank')}
+                className="flex w-4/5 bg-green-500 items-center justify-center py-4 text-sm bg-white text-black rounded-full my-4 bg-white"
+                variant='sky'
+              />
+            </div>
+          </div>
+        )}
+      </div></>
   );
 }
