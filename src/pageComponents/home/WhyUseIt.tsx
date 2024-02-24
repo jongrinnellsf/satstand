@@ -89,11 +89,8 @@ const ProductCard = ({ name, price, updateProductData }: ProductCardProps) => {
 
   return (
 
-    <div className="relative flex flex-col text-gray-700 bg-[#141519] shadow-md border border-stone-100 rounded-xl w-full sm:w-96">
-
-
-
-      <div className="relative mx-4 mt-4 overflow-hidden text-gray-700 bg-white bg-clip-border rounded-xl h-96">
+<div className="relative flex flex-col text-gray-700 bg-[#141519] shadow-md border border-stone-100 rounded-xl w-full sm:w-96 md:w-96 lg:w-96 xl:w-96">
+      <div className="relative mx-4 mt-4 overflow-hidden text-gray-700 bg-white bg-clip-border rounded-xl h-58">
         <img
           src="https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9647.jpg?v=1707459629"
           alt="product image" className="object-cover w-full h-full" />
@@ -238,7 +235,7 @@ export default function WhyUseIt() {
                 <a href="https://www.standwithcrypto.org/" target="_blank">
                   Stand with crypto
                 </a>{' '}
-                🛡️
+                
               </span>
             </li>
             <li className="mt-5 inline-flex items-center justify-start gap-4">
@@ -248,7 +245,7 @@ export default function WhyUseIt() {
                 <a href="https://www.mintapenny.xyz/" target="_blank">
                   Mint a penny
                 </a>{' '}
-                💰
+                
               </span>
             </li>
           </ul>
