@@ -2,8 +2,8 @@ import { generateMetadata } from '../../src/utils/generateMetadata';
 import BuyMeCoffeePage from '.';
 
 export const metadata = generateMetadata({
-  title: 'Saotshis Stand',
-  description: 'Build Onchain Applications with the best consumer experience in a few minutes.',
+  title: 'Satoshis Stand',
+  description: 'Get discounted merch for holding NFTs',
   images: 'themes.png',
   pathname: 'buy-me-coffee',
 });

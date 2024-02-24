@@ -10,11 +10,11 @@ import { MinusIcon } from '@radix-ui/react-icons';
 
 
 const products = [
-  { name: "Sample Tee-M", price: 0.05 },
+  { name: "Sample Tee", price: 0.05 },
   { name: "Sample Hat", price: 0.1 },
   { name: "Sample Hoodie", price: 0.2 },
-  { name: "Base Logo Hat", price: 20 },
-  { name: "Onchain summer sunglasses", price: 25 },
+  { name: "Base Logo Hat", price: 1 },
+  { name: "Onchain summer sunglasses", price: 5 },
   // Add the rest of products here...
 ];
 
@@ -88,7 +88,10 @@ const ProductCard = ({ name, price, updateProductData }: ProductCardProps) => {
   };
 
   return (
-    <div className="relative flex flex-col text-gray-700 bg-[#141519] shadow-md bg-clip-border border-1 border-white rounded-xl w-full sm:w-96">
+
+    <div className="relative flex flex-col text-gray-700 bg-[#141519] shadow-md border border-stone-100 rounded-xl w-full sm:w-96">
+
+
 
       <div className="relative mx-4 mt-4 overflow-hidden text-gray-700 bg-white bg-clip-border rounded-xl h-96">
         <img
@@ -117,7 +120,7 @@ const ProductCard = ({ name, price, updateProductData }: ProductCardProps) => {
         </div>
         <p className="block font-sans text-sm antialiased font-normal leading-normal text-gray-700 opacity-75">
           {/* Description can be added here if needed */}
-          
+
         </p>
       </div>
       <div className="flex items-center justify-center space-x-2 p-4">
@@ -195,7 +198,7 @@ export default function WhyUseIt() {
       method: "POST",
       headers: myHeaders,
       body: raw,
-      redirect: "follow" as RequestRedirect 
+      redirect: "follow" as RequestRedirect
     };
 
     try {
@@ -261,7 +264,7 @@ export default function WhyUseIt() {
         ))}
         <div className="flex flex-col items-center justify-center mt-4 w-full">
           {totalQuantity > 0 && (
-            <div className="fixed bottom-0 left-0 right-0 p-4 bg-black shadow-md rounded-t-[25px] flex flex-col items-center">
+            <div className="fixed bottom-0 left-0 right-0 p-4 shadow-md rounded-t-[25px] flex flex-col items-center backdrop-blur-2xl">
               <Button
                 buttonContent={`CHECKOUT ${totalQuantity} item${totalQuantity !== 1 ? 's' : ''}`}
                 onClick={handleCheckout}
@@ -279,7 +282,7 @@ export default function WhyUseIt() {
         </div>
         {isModalOpen && (
           <div
-            className="fixed inset-0 w-full h-full bg-black bg-opacity-100 flex justify-center items-center px-4 py-8 z-50"
+            className="fixed inset-0 w-full h-full bg-black bg-opacity-100 backdrop-blur-2xl flex justify-center items-center px-4 py-8 z-50"
             onClick={closeModal}
           >
             <div
@@ -293,14 +296,17 @@ export default function WhyUseIt() {
                 <Cross1Icon width="24" height="24" />
               </button>
               <div className="text-lg font-semibold mb-4">Your Order:</div>
+
               <ul className="mb-4">
                 {purchasedProducts.map((product, index) => (
-                  <li key={index}>{`${product.name} (${product.quantity}x)`}</li>
+                  <li key={index} style={{ display: 'flex', alignItems: 'center' }}>
+                    <CheckIcon width="24" height="24" style={{ marginRight: '5px' }} /> {`${product.name} (${product.quantity}x)`}
+                  </li>
                 ))}
               </ul>
               <div className="text-lg font-semibold mb-4">Subtotal: ${totalPrice.toFixed(2)}</div>
               <div className="p-4 bg-white rounded-lg">
-                <QRCode value={qrCodeValue} size={256} />
+                <QRCode value={qrCodeValue} size={116} />
               </div>
               <Button
                 buttonContent="PAY"

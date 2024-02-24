@@ -3,8 +3,8 @@ import { generateMetadata } from './generateMetadata';
 describe('generateMetadata', () => {
   it('should set metadataBase default', () => {
     const metadata = generateMetadata({
-      title: 'Saotshis Stand',
-      description: 'Build Onchain Applications with the best consumer experience in a few minutes.',
+      title: 'Satoshis Stand',
+      description: 'Get discounted merch for holding NFTs',
       images: 'themes.png',
       pathname: '',
     });
@@ -27,7 +27,7 @@ describe('generateMetadata', () => {
         const metadata = generateMetadata2({
           title: 'Satoshis Stand',
           description:
-            'Build Onchain Applications with the best consumer experience in a few minutes.',
+            'Get discounted merch for holding NFTs',
           images: 'themes.png',
           pathname: '',
         });
