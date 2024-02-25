@@ -7,6 +7,9 @@ import { Cross1Icon } from '@radix-ui/react-icons';
 import { ReloadIcon } from '@radix-ui/react-icons';
 import { PlusIcon } from '@radix-ui/react-icons';
 import { MinusIcon } from '@radix-ui/react-icons';
+// import { CheckboxIcon } from '@radix-ui/react-icons';
+// import { BoxIcon } from '@radix-ui/react-icons';
+
 
 
 const products = [
@@ -35,23 +38,27 @@ const checkNFTOwnership = async (walletAddress: string) => {
     'accept': 'application/json'
   };
 
-  //0x9D90669665607F08005CAe4A7098143f554c59EF = stand with crypto
-  //0xB3Da098a7251A647892203e0C256b4398d131a54 = mint a penny
-  //0x9340204616750cb61e56437befc95172c6ff6606 = FarCats
-
   try {
-    const response = await fetch(`https://api.simplehash.com/api/v0/nfts/contracts?chains=ethereum,base&wallet_addresses=${walletAddress}&contract_addresses=0xB3Da098a7251A647892203e0C256b4398d131a54,0x9D90669665607F08005CAe4A7098143f554c59EF`, {
+    const response = await fetch(`https://api.simplehash.com/api/v0/nfts/contracts?chains=ethereum,base&wallet_addresses=${walletAddress}&contract_addresses=0xB3Da098a7251A647892203e0C256b4398d131a54,0x9D90669665607F08005CAe4A7098143f554c59EF,0x9340204616750cb61e56437befc95172c6ff6606`, {
       method: 'GET',
       headers: headers
     });
 
     const data = await response.json();
     const contracts = data.wallets[0]?.contracts;
-    if (contracts?.length === 2) {
-      return 15; // 15% discount if both NFTs are present
-    } else if (contracts?.length > 0) {
-      return 10; // 10% discount if at least one NFT is present
-    }
+
+    let discount = 0;
+    contracts.forEach((contract: { contract_address: string }) => {
+      if (contract.contract_address === "0x9D90669665607F08005CAe4A7098143f554c59EF") {
+        discount += 20; //  discount if "Stand with Crypto" NFT is present
+      } else if (contract.contract_address === "0xB3Da098a7251A647892203e0C256b4398d131a54") {
+        discount += 3; //  discount if "Mint a Penny" NFT is present
+      } else if (contract.contract_address === "0x9340204616750cb61e56437bEfC95172C6Ff6606") {
+        discount += 10; //  discount if "FarCats" NFT is present
+      }
+    });
+
+    return discount;
   } catch (error) {
     console.error('Error checking NFT ownership:', error);
   }
@@ -90,7 +97,7 @@ const ProductCard = ({ name, price, updateProductData }: ProductCardProps) => {
   return (
 
 <div className="relative flex flex-col text-gray-700 bg-[#141519] shadow-md border border-stone-100 rounded-xl w-full sm:w-96 md:w-96 lg:w-96 xl:w-96">
-      <div className="relative mx-4 mt-4 overflow-hidden text-gray-700 bg-white bg-clip-border rounded-xl h-58">
+      <div className="relative mx-4 mt-4 overflow-hidden text-gray-700 bg-white bg-clip-border rounded-xl h-38">
         <img
           src="https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9647.jpg?v=1707459629"
           alt="product image" className="object-cover w-full h-full" />
@@ -140,6 +147,9 @@ export default function WhyUseIt() {
   const [qrCodeValue, setQRCodeValue] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const totalQuantity = productsData.reduce((total, product) => total + product.quantity, 0);
+
+
+
 
   const updateProductData = (name: string, discountedPrice: number, quantity: number) => {
     const updatedProducts = [...productsData];
@@ -219,23 +229,37 @@ export default function WhyUseIt() {
     setResetKey(prevKey => prevKey + 1); // Update the key to trigger re-render
   };
 
+  
+
   return (
     <>
       <section className="mb-24 flex flex-col items-center justify-center">
 
         <div className="w-full md:w-4/5">
-          <h2 className="mb-14 text-center text-xl font-medium text-white md:text-2xl lg:text-3xl">
+
+          {/* <h2 className="mb-14 text-center text-xl font-medium text-white md:text-2xl lg:text-3xl">
             Save 10% by holding one of these NFTs. Save 15% by holding both.
-          </h2>
+          </h2> */}
           <ul className="items-left flex flex-col justify-center">
             <li className="inline-flex items-center justify-start gap-4">
               <CheckIcon width="24" height="24" />
               <span className="font-inter text-xl font-normal leading-7 text-white">
                 {' '}
                 <a href="https://www.standwithcrypto.org/" target="_blank">
-                  Stand with crypto
+                  Stand with crypto 
                 </a>{' '}
-                
+                — 20% off
+              </span>
+            </li>
+
+            <li className="mt-5 inline-flex items-center justify-start gap-4">
+              <CheckIcon width="24" height="24" />
+              <span className="font-inter text-xl font-normal leading-7 text-white">
+
+                <a href="https://opensea.io/collection/farcats" target="_blank">
+                  FarCat
+                </a>{' '}
+                — 10% off
               </span>
             </li>
             <li className="mt-5 inline-flex items-center justify-start gap-4">
@@ -245,7 +269,7 @@ export default function WhyUseIt() {
                 <a href="https://www.mintapenny.xyz/" target="_blank">
                   Mint a penny
                 </a>{' '}
-                
+                — 3% off
               </span>
             </li>
           </ul>
@@ -257,16 +281,15 @@ export default function WhyUseIt() {
           <div key={`${product.name}-${index}`} className="p-2 w-full sm:w-auto">
             <ProductCard key={`${product.name}-${resetKey}`} name={product.name} price={product.price} updateProductData={updateProductData} />
           </div>
-
         ))}
         <div className="flex flex-col items-center justify-center mt-4 w-full">
           {totalQuantity > 0 && (
             <div className="fixed bottom-0 left-0 right-0 p-4 shadow-md rounded-t-[25px] flex flex-col items-center backdrop-blur-2xl">
               <Button
-                buttonContent={`CHECKOUT ${totalQuantity} item${totalQuantity !== 1 ? 's' : ''}`}
+                buttonContent={`CHECKOUT ${totalQuantity} ITEM${totalQuantity !== 1 ? 'S' : ''}`}
                 onClick={handleCheckout}
                 variant="sky"
-                className="w-full md:w-1/2 font-bold rounded-[25px] my-2"
+                className="w-full md:w-1/2 rounded-[25px] my-2"
               />
               <Button
                 buttonContent={<><ReloadIcon style={{ marginRight: '5px' }} /> RESET CART</>}
