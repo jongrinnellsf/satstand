@@ -10,8 +10,6 @@ import { MinusIcon } from '@radix-ui/react-icons';
 // import { CheckboxIcon } from '@radix-ui/react-icons';
 // import { BoxIcon } from '@radix-ui/react-icons';
 
-
-
 const products = [
   { name: "Sample Tee", price: 0.05 },
   { name: "Sample Hat", price: 0.1 },
@@ -39,7 +37,7 @@ const checkNFTOwnership = async (walletAddress: string) => {
   };
 
   try {
-    const response = await fetch(`https://api.simplehash.com/api/v0/nfts/contracts?chains=ethereum,base&wallet_addresses=${walletAddress}&contract_addresses=0xB3Da098a7251A647892203e0C256b4398d131a54,0x9D90669665607F08005CAe4A7098143f554c59EF,0x9340204616750cb61e56437befc95172c6ff6606`, {
+    const response = await fetch(`https://api.simplehash.com/api/v0/nfts/contracts?chains=ethereum,base&wallet_addresses=${walletAddress}&contract_addresses=0xB3Da098a7251A647892203e0C256b4398d131a54,0x9D90669665607F08005CAe4A7098143f554c59EF,0x9340204616750cb61e56437befc95172c6ff6606,0x918144e4916eb656Db48F38329D72517a810f702`, {
       method: 'GET',
       headers: headers
     });
@@ -55,7 +53,10 @@ const checkNFTOwnership = async (walletAddress: string) => {
         discount += 3; //  discount if "Mint a Penny" NFT is present
       } else if (contract.contract_address === "0x9340204616750cb61e56437bEfC95172C6Ff6606") {
         discount += 10; //  discount if "FarCats" NFT is present
+      } else if (contract.contract_address === "0x918144e4916eb656Db48F38329D72517a810f702") {
+        discount += 20; //  other stand with crypto NFT
       }
+      
     });
 
     return discount;
@@ -96,7 +97,7 @@ const ProductCard = ({ name, price, updateProductData }: ProductCardProps) => {
 
   return (
 
-<div className="relative flex flex-col text-gray-700 bg-[#141519] shadow-md border border-stone-100 rounded-xl w-full sm:w-96 md:w-96 lg:w-96 xl:w-96">
+    <div className="relative flex flex-col text-gray-700 bg-[#141519] shadow-md border border-stone-100 rounded-xl w-full sm:w-96 md:w-96 lg:w-96 xl:w-96">
       <div className="relative mx-4 mt-4 overflow-hidden text-gray-700 bg-white bg-clip-border rounded-xl h-38">
         <img
           src="https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9647.jpg?v=1707459629"
@@ -229,7 +230,7 @@ export default function WhyUseIt() {
     setResetKey(prevKey => prevKey + 1); // Update the key to trigger re-render
   };
 
-  
+
 
   return (
     <>
@@ -246,7 +247,7 @@ export default function WhyUseIt() {
               <span className="font-inter text-xl font-normal leading-7 text-white">
                 {' '}
                 <a href="https://www.standwithcrypto.org/" target="_blank">
-                  Stand with crypto 
+                  Stand with crypto
                 </a>{' '}
                 — 20% off
               </span>
