@@ -11,17 +11,20 @@ import { MinusIcon } from '@radix-ui/react-icons';
 // import { BoxIcon } from '@radix-ui/react-icons';
 
 const products = [
-  { name: "Sample Tee", price: 0.05 },
-  { name: "Sample Hat", price: 0.1 },
-  { name: "Sample Hoodie", price: 0.2 },
-  { name: "Base Logo Hat", price: 1 },
-  { name: "Onchain summer sunglasses", price: 5 },
+  { name: "Coin Tee", price: 0.05, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9600_b4e81208-fd06-4205-b0d8-739bcaa527ac.jpg?v=1707459407" },
+  { name: "Base Tee", price: 0.10, imageUrl: "https://private-user-images.githubusercontent.com/51838382/309282874-aea37d32-c3e9-4bd6-9e10-74453b7ba6b6.jpg?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MDkzMDE4MDAsIm5iZiI6MTcwOTMwMTUwMCwicGF0aCI6Ii81MTgzODM4Mi8zMDkyODI4NzQtYWVhMzdkMzItYzNlOS00YmQ2LTllMTAtNzQ0NTNiN2JhNmI2LmpwZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDAzMDElMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQwMzAxVDEzNTgyMFomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWMyZTgxNDY5ZWYwMDBkNTQxYWIxMmYyMDYwOTllNTM0ZTVjOWZjNjVhODA4MjQ3ZDI5NzU5ZjQzYzJjY2JkMTcmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0JmFjdG9yX2lkPTAma2V5X2lkPTAmcmVwb19pZD0wIn0.ubrl76KcT73CH3EsdJuGsdzXewUZtUhCVaNy7u5yZw0" },
+  { name: "Coin Hat", price: 15, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9889.jpg?v=1707459173" },
+  { name: "Base Logo Hat", price: 15, imageUrl: "https://i.ebayimg.com/images/g/wjAAAOSwws1iock7/s-l1200.jpg" },
+  { name: "Shadowy Super Coder Hoodie", price: 40, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9694.jpg?v=1707459485" },
+  { name: "Bitcoin Whitepaper Hoodie", price: 40, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9641.jpg?v=1707459629" },
+  { name: "Onchain summer sunglasses", price: 15, imageUrl: "https://www.lockerroomsportsapparel.com/cdn/shop/products/c24.jpg?v=1681920691" },
   // Add the rest of products here...
 ];
 
 interface ProductCardProps {
   name: string;
   price: number;
+  imageUrl: string;
   updateProductData: (name: string, discountedPrice: number, quantity: number) => void;
 }
 
@@ -50,15 +53,13 @@ const checkNFTOwnership = async (walletAddress: string) => {
       if (contract.contract_address === "0x9D90669665607F08005CAe4A7098143f554c59EF") {
         discount += 20; //  discount if "Stand with Crypto" NFT is present
       } else if (contract.contract_address === "0xB3Da098a7251A647892203e0C256b4398d131a54") {
-        discount += 3; //  discount if "Mint a Penny" NFT is present
+        discount += 1; //  discount if "Mint a Penny" NFT is present
       } else if (contract.contract_address === "0x9340204616750cb61e56437bEfC95172C6Ff6606") {
         discount += 10; //  discount if "FarCats" NFT is present
       } else if (contract.contract_address === "0x918144e4916eb656Db48F38329D72517a810f702") {
         discount += 20; //  other stand with crypto NFT
       }
-      
     });
-
     return discount;
   } catch (error) {
     console.error('Error checking NFT ownership:', error);
@@ -66,13 +67,11 @@ const checkNFTOwnership = async (walletAddress: string) => {
   return 0; // No discount if no NFTs are found or an error occurs
 };
 
-
-const ProductCard = ({ name, price, updateProductData }: ProductCardProps) => {
+const ProductCard = ({ name, price, imageUrl, updateProductData }: ProductCardProps) => {
   const [quantity, setQuantity] = useState(0);
   const { address } = useAccount();
   const [discountedPrice, setDiscountedPrice] = useState(price);
   const [discount, setDiscount] = useState(0);
-
 
   const increment = () => {
     setQuantity(quantity + 1);
@@ -85,7 +84,6 @@ const ProductCard = ({ name, price, updateProductData }: ProductCardProps) => {
         const newPrice = price * (1 - discount / 100);
         setDiscountedPrice(newPrice);
         setDiscount(discount);
-
       });
     }
   }, [address, price]);
@@ -96,12 +94,13 @@ const ProductCard = ({ name, price, updateProductData }: ProductCardProps) => {
   };
 
   return (
-
     <div className="relative flex flex-col text-gray-700 bg-[#141519] shadow-md border border-stone-100 rounded-xl w-full sm:w-96 md:w-96 lg:w-96 xl:w-96">
       <div className="relative mx-4 mt-4 overflow-hidden text-gray-700 bg-white bg-clip-border rounded-xl h-38">
         <img
-          src="https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9647.jpg?v=1707459629"
-          alt="product image" className="object-cover w-full h-full" />
+          src={imageUrl}
+          alt="product image"
+          className="object-cover w-full h-64 md:w-full md:h-64"
+        />
       </div>
       <div className="p-6">
         <div className="flex items-center justify-between mb-2">
@@ -125,7 +124,6 @@ const ProductCard = ({ name, price, updateProductData }: ProductCardProps) => {
         </div>
         <p className="block font-sans text-sm antialiased font-normal leading-normal text-gray-700 opacity-75">
           {/* Description can be added here if needed */}
-
         </p>
       </div>
       <div className="flex items-center justify-center space-x-2 p-4">
@@ -133,12 +131,9 @@ const ProductCard = ({ name, price, updateProductData }: ProductCardProps) => {
         <div className="flex items-center justify-center border border-gray-300 text-xl text-white font-semibold w-20 h-10">{quantity}</div>
         <button onClick={increment} className="flex items-center justify-center h-10 w-10 rounded-full border border-gray-300 bg-gray-100 text-xl font-bold hover:bg-gray-200 shadow"> {<PlusIcon />}</button>
       </div>
-
     </div>
-
   );
 };
-
 
 export default function WhyUseIt() {
   const [totalPrice, setTotalPrice] = useState(0);
@@ -148,9 +143,6 @@ export default function WhyUseIt() {
   const [qrCodeValue, setQRCodeValue] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const totalQuantity = productsData.reduce((total, product) => total + product.quantity, 0);
-
-
-
 
   const updateProductData = (name: string, discountedPrice: number, quantity: number) => {
     const updatedProducts = [...productsData];
@@ -162,7 +154,6 @@ export default function WhyUseIt() {
     } else {
       updatedProducts.push({ name, price: discountedPrice, quantity }); // Use discountedPrice for new entries
     }
-
     setProductsData(updatedProducts);
 
     const newTotalPrice = updatedProducts.reduce((acc, product) => acc + product.price * product.quantity, 0);
@@ -182,7 +173,6 @@ export default function WhyUseIt() {
     myHeaders.append("Accept", "application/json");
     myHeaders.append("X-CC-Api-Key", comKey);
 
-
     const productsDataToSend = productsData.map((product) => ({
       name: product.name,
       price: product.price.toFixed(2),
@@ -191,7 +181,6 @@ export default function WhyUseIt() {
 
     const raw = JSON.stringify({
       "local_price": {
-        // "amount": totalPrice.toString(),
         "amount": totalPrice.toFixed(2),
         "currency": "USD"
       },
@@ -230,17 +219,11 @@ export default function WhyUseIt() {
     setResetKey(prevKey => prevKey + 1); // Update the key to trigger re-render
   };
 
-
-
   return (
     <>
       <section className="mb-24 flex flex-col items-center justify-center">
 
         <div className="w-full md:w-4/5">
-
-          {/* <h2 className="mb-14 text-center text-xl font-medium text-white md:text-2xl lg:text-3xl">
-            Save 10% by holding one of these NFTs. Save 15% by holding both.
-          </h2> */}
           <ul className="items-left flex flex-col justify-center">
             <li className="inline-flex items-center justify-start gap-4">
               <CheckIcon width="24" height="24" />
@@ -256,7 +239,6 @@ export default function WhyUseIt() {
             <li className="mt-5 inline-flex items-center justify-start gap-4">
               <CheckIcon width="24" height="24" />
               <span className="font-inter text-xl font-normal leading-7 text-white">
-
                 <a href="https://opensea.io/collection/farcats" target="_blank">
                   FarCat
                 </a>{' '}
@@ -266,7 +248,6 @@ export default function WhyUseIt() {
             <li className="mt-5 inline-flex items-center justify-start gap-4">
               <CheckIcon width="24" height="24" />
               <span className="font-inter text-xl font-normal leading-7 text-white">
-
                 <a href="https://www.mintapenny.xyz/" target="_blank">
                   Mint a penny
                 </a>{' '}
@@ -280,7 +261,13 @@ export default function WhyUseIt() {
       <div className="flex flex-wrap justify-start md:justify-start p-2">
         {products.map((product, index) => (
           <div key={`${product.name}-${index}`} className="p-2 w-full sm:w-auto">
-            <ProductCard key={`${product.name}-${resetKey}`} name={product.name} price={product.price} updateProductData={updateProductData} />
+            <ProductCard
+              key={`${product.name}-${resetKey}`}
+              name={product.name}
+              price={product.price}
+              imageUrl={product.imageUrl} // Pass imageUrl here
+              updateProductData={updateProductData}
+            />
           </div>
         ))}
         <div className="flex flex-col items-center justify-center mt-4 w-full">
