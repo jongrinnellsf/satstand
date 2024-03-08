@@ -22,11 +22,11 @@ export default function MintContractDemo() {
       {showConfetti && <Confetti />}
       <div className="flex-shrink-1 mt-10 w-full flex-grow-0 lg:mt-0">
         <h1 className={clsx(styles.HomeHeaderHeadline, 'font-robotoMono')}>
-          CONGRATS! 🎉
+          CONGRATS 🎉
           <br />
         </h1>
         <p className={styles.HomeHeaderParagraph}>
-          You bought merch onchain
+          You bought merch ONCHAIN!
         </p>
       
       </div>
