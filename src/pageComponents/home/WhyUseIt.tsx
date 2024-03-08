@@ -11,7 +11,7 @@ import { MinusIcon } from '@radix-ui/react-icons';
 // import { BoxIcon } from '@radix-ui/react-icons';
 
 const products = [
-  { name: "Coin Tee", price: 0.05, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9600_b4e81208-fd06-4205-b0d8-739bcaa527ac.jpg?v=1707459407" },
+  { name: "Coin Tee", price: 1, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9600_b4e81208-fd06-4205-b0d8-739bcaa527ac.jpg?v=1707459407" },
   { name: "Base Tee", price: 0.10, imageUrl: "https://m.media-amazon.com/images/I/A13usaonutL._CLa%7C2140%2C2000%7C71gTgdiSrwL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_UY1000_.png" },
   { name: "Coin Hat", price: 15, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9889.jpg?v=1707459173" },
   { name: "Base Logo Hat", price: 15, imageUrl: "https://i.ebayimg.com/images/g/wjAAAOSwws1iock7/s-l1200.jpg" },
@@ -40,7 +40,7 @@ const checkNFTOwnership = async (walletAddress: string) => {
   };
 
   try {
-    const response = await fetch(`https://api.simplehash.com/api/v0/nfts/contracts?chains=ethereum,base&wallet_addresses=${walletAddress}&contract_addresses=0xB3Da098a7251A647892203e0C256b4398d131a54,0x9D90669665607F08005CAe4A7098143f554c59EF,0x9340204616750cb61e56437befc95172c6ff6606,0x918144e4916eb656Db48F38329D72517a810f702`, {
+    const response = await fetch(`https://api.simplehash.com/api/v0/nfts/contracts?chains=ethereum,base&wallet_addresses=${walletAddress}&contract_addresses=0x9D90669665607F08005CAe4A7098143f554c59EF,0x918144e4916eb656Db48F38329D72517a810f702,0xD4416b13d2b3a9aBae7AcD5D6C2BbDBE25686401,0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85`, {
       method: 'GET',
       headers: headers
     });
@@ -51,14 +51,16 @@ const checkNFTOwnership = async (walletAddress: string) => {
     let discount = 0;
     contracts.forEach((contract: { contract_address: string }) => {
       if (contract.contract_address === "0x9D90669665607F08005CAe4A7098143f554c59EF") {
-        discount += 20; //  discount if "Stand with Crypto" NFT is present
-      } else if (contract.contract_address === "0xB3Da098a7251A647892203e0C256b4398d131a54") {
-        discount += 1; //  discount if "Mint a Penny" NFT is present
-      } else if (contract.contract_address === "0x9340204616750cb61e56437bEfC95172C6Ff6606") {
-        discount += 10; //  discount if "FarCats" NFT is present
-      } else if (contract.contract_address === "0x918144e4916eb656Db48F38329D72517a810f702") {
-        discount += 20; //  other stand with crypto NFT
+        discount += 10; //  discount if "Stand with Crypto" NFT is present
       }
+      else if (contract.contract_address === "0x918144e4916eb656Db48F38329D72517a810f702") {
+        discount += 10; //  other stand with crypto NFT
+      }
+      else if (contract.contract_address === "0xD4416b13d2b3a9aBae7AcD5D6C2BbDBE25686401") {
+        discount += 10; //  discount if "ENS 1" NFT is present
+      } else if (contract.contract_address === "0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85") {
+        discount += 10; //  discount if "ENS 2" NFT is present
+      } 
     });
     return discount;
   } catch (error) {
@@ -94,7 +96,7 @@ const ProductCard = ({ name, price, imageUrl, updateProductData }: ProductCardPr
   };
 
   return (
-    <div className="relative flex flex-col text-gray-700 bg-[#141519] shadow-md border border-stone-100 rounded-xl w-full sm:w-96 md:w-96 lg:w-96 xl:w-96">
+    <div className="relative flex flex-col text-gray-700 bg-[#141519] shadow-md rounded-xl w-full sm:w-96 md:w-96 lg:w-96 xl:w-96">
       <div className="relative mx-4 mt-4 overflow-hidden text-gray-700 bg-white bg-clip-border rounded-xl h-38">
         <img
           src={imageUrl}
@@ -224,6 +226,7 @@ export default function WhyUseIt() {
       <section className="mb-24 flex flex-col items-center justify-center">
 
         <div className="w-full md:w-4/5">
+
           <ul className="items-left flex flex-col justify-center">
             <li className="inline-flex items-center justify-start gap-4">
               <CheckIcon width="24" height="24" />
@@ -232,20 +235,20 @@ export default function WhyUseIt() {
                 <a href="https://www.standwithcrypto.org/" target="_blank">
                   Stand with crypto
                 </a>{' '}
-                — 20% off
+                — 10% off
               </span>
             </li>
 
             <li className="mt-5 inline-flex items-center justify-start gap-4">
               <CheckIcon width="24" height="24" />
               <span className="font-inter text-xl font-normal leading-7 text-white">
-                <a href="https://opensea.io/collection/farcats" target="_blank">
-                  FarCat
+                <a href="https://app.ens.domains/" target="_blank">
+                  Ethereum Name Service (ENS) name
                 </a>{' '}
                 — 10% off
               </span>
             </li>
-            <li className="mt-5 inline-flex items-center justify-start gap-4">
+            {/* <li className="mt-5 inline-flex items-center justify-start gap-4">
               <CheckIcon width="24" height="24" />
               <span className="font-inter text-xl font-normal leading-7 text-white">
                 <a href="https://www.mintapenny.xyz/" target="_blank">
@@ -253,7 +256,7 @@ export default function WhyUseIt() {
                 </a>{' '}
                 — 3% off
               </span>
-            </li>
+            </li> */}
           </ul>
 
         </div>
