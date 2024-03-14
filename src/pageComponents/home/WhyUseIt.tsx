@@ -7,8 +7,11 @@ import { Cross1Icon } from '@radix-ui/react-icons';
 import { ReloadIcon } from '@radix-ui/react-icons';
 import { PlusIcon } from '@radix-ui/react-icons';
 import { MinusIcon } from '@radix-ui/react-icons';
+import { ArrowRightIcon } from '@radix-ui/react-icons';
+
 // import { CheckboxIcon } from '@radix-ui/react-icons';
 // import { BoxIcon } from '@radix-ui/react-icons';
+
 
 const products = [
   { name: "Coin Tee", price: 1, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9600_b4e81208-fd06-4205-b0d8-739bcaa527ac.jpg?v=1707459407" },
@@ -40,7 +43,7 @@ const checkNFTOwnership = async (walletAddress: string) => {
   };
 
   try {
-    const response = await fetch(`https://api.simplehash.com/api/v0/nfts/contracts?chains=ethereum,base&wallet_addresses=${walletAddress}&contract_addresses=0x9D90669665607F08005CAe4A7098143f554c59EF,0x918144e4916eb656Db48F38329D72517a810f702,0xD4416b13d2b3a9aBae7AcD5D6C2BbDBE25686401,0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85`, {
+    const response = await fetch(`https://api.simplehash.com/api/v0/nfts/contracts?chains=ethereum,base&wallet_addresses=${walletAddress}&contract_addresses=0x9D90669665607F08005CAe4A7098143f554c59EF,0x918144e4916eb656Db48F38329D72517a810f702,0xD4416b13d2b3a9aBae7AcD5D6C2BbDBE25686401,0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85,0x9C8d37F419440c4D746A45f6ba6dAcB5DF158e19`, {
       method: 'GET',
       headers: headers
     });
@@ -53,6 +56,7 @@ const checkNFTOwnership = async (walletAddress: string) => {
       if (contract.contract_address === "0x9D90669665607F08005CAe4A7098143f554c59EF") {
         discount += 10; //  discount if "Stand with Crypto" NFT is present
       }
+
       else if (contract.contract_address === "0x918144e4916eb656Db48F38329D72517a810f702") {
         discount += 10; //  other stand with crypto NFT
       }
@@ -60,7 +64,10 @@ const checkNFTOwnership = async (walletAddress: string) => {
         discount += 10; //  discount if "ENS 1" NFT is present
       } else if (contract.contract_address === "0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85") {
         discount += 10; //  discount if "ENS 2" NFT is present
-      } 
+      }
+      else if (contract.contract_address === "0x9C8d37F419440c4D746A45f6ba6dAcB5DF158e19") {
+        discount += 10; //  discount if "a CryptoVerb" NFT is present
+      }
     });
     return discount;
   } catch (error) {
@@ -229,7 +236,7 @@ export default function WhyUseIt() {
 
           <ul className="items-left flex flex-col justify-center">
             <li className="inline-flex items-center justify-start gap-4">
-              <CheckIcon width="24" height="24" />
+              <ArrowRightIcon width="24" height="24" />
               <span className="font-inter text-xl font-normal leading-7 text-white">
                 {' '}
                 <a href="https://www.standwithcrypto.org/" target="_blank">
@@ -240,7 +247,7 @@ export default function WhyUseIt() {
             </li>
 
             <li className="mt-5 inline-flex items-center justify-start gap-4">
-              <CheckIcon width="24" height="24" />
+              <ArrowRightIcon width="24" height="24" />
               <span className="font-inter text-xl font-normal leading-7 text-white">
                 <a href="https://app.ens.domains/" target="_blank">
                   Ethereum Name Service (ENS) name
@@ -248,15 +255,15 @@ export default function WhyUseIt() {
                 — 10% off
               </span>
             </li>
-            {/* <li className="mt-5 inline-flex items-center justify-start gap-4">
-              <CheckIcon width="24" height="24" />
+            <li className="mt-5 inline-flex items-center justify-start gap-4">
+              <ArrowRightIcon width="24" height="24" />
               <span className="font-inter text-xl font-normal leading-7 text-white">
-                <a href="https://www.mintapenny.xyz/" target="_blank">
-                  Mint a penny
-                </a>{' '}
-                — 3% off
+
+                CryptoVerb
+
+                — 10% off
               </span>
-            </li> */}
+            </li>
           </ul>
 
         </div>
@@ -319,6 +326,8 @@ export default function WhyUseIt() {
               <div className="p-4 bg-white rounded-lg">
                 <QRCode value={qrCodeValue} size={116} />
               </div>
+              <p>scan QR or click PAY</p>
+
               <Button
                 buttonContent="PAY"
                 onClick={() => window.open(hostedUrl, '_blank')}
