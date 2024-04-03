@@ -9,8 +9,8 @@ import { PlusIcon } from '@radix-ui/react-icons';
 import { MinusIcon } from '@radix-ui/react-icons';
 import { ArrowRightIcon } from '@radix-ui/react-icons';
 
-// import { CheckboxIcon } from '@radix-ui/react-icons';
-// import { BoxIcon } from '@radix-ui/react-icons';
+import { CheckboxIcon } from '@radix-ui/react-icons';
+import { BoxIcon } from '@radix-ui/react-icons';
 
 
 const products = [
@@ -29,9 +29,13 @@ interface ProductCardProps {
   price: number;
   imageUrl: string;
   updateProductData: (name: string, discountedPrice: number, quantity: number) => void;
+  setAppliedDiscounts: React.Dispatch<React.SetStateAction<{ [key: string]: boolean }>>;
+
 }
 
-const checkNFTOwnership = async (walletAddress: string) => {
+const checkNFTOwnership = async (walletAddress: string, setAppliedDiscounts: React.Dispatch<React.SetStateAction<{ [key: string]: boolean }>>) => {
+
+  // const checkNFTOwnership = async (walletAddress: string) => {
   const SH_API_KEY = process.env.NEXT_PUBLIC_X_API_KEY;
   if (!SH_API_KEY) {
     throw new Error('API_KEY is not defined');
@@ -54,19 +58,20 @@ const checkNFTOwnership = async (walletAddress: string) => {
     let discount = 0;
     contracts.forEach((contract: { contract_address: string }) => {
       if (contract.contract_address === "0x9D90669665607F08005CAe4A7098143f554c59EF") {
-        discount += 10; //  discount if "Stand with Crypto" NFT is present
-      }
-
-      else if (contract.contract_address === "0x918144e4916eb656Db48F38329D72517a810f702") {
-        discount += 10; //  other stand with crypto NFT
-      }
-      else if (contract.contract_address === "0xD4416b13d2b3a9aBae7AcD5D6C2BbDBE25686401") {
-        discount += 10; //  discount if "ENS 1" NFT is present
+        discount += 10;
+        setAppliedDiscounts(prev => ({ ...prev, standWithCrypto: true }));
+      } else if (contract.contract_address === "0x918144e4916eb656Db48F38329D72517a810f702") {
+        discount += 10;
+        setAppliedDiscounts(prev => ({ ...prev, otherStandWithCrypto: true }));
+      } else if (contract.contract_address === "0xD4416b13d2b3a9aBae7AcD5D6C2BbDBE25686401") {
+        discount += 10;
+        setAppliedDiscounts(prev => ({ ...prev, ens1: true }));
       } else if (contract.contract_address === "0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85") {
-        discount += 10; //  discount if "ENS 2" NFT is present
-      }
-      else if (contract.contract_address === "0x9C8d37F419440c4D746A45f6ba6dAcB5DF158e19") {
-        discount += 10; //  discount if "a CryptoVerb" NFT is present
+        discount += 10;
+        setAppliedDiscounts(prev => ({ ...prev, ens2: true }));
+      } else if (contract.contract_address === "0x9C8d37F419440c4D746A45f6ba6dAcB5DF158e19") {
+        discount += 10;
+        setAppliedDiscounts(prev => ({ ...prev, cryptoVerb: true }));
       }
     });
     return discount;
@@ -76,7 +81,7 @@ const checkNFTOwnership = async (walletAddress: string) => {
   return 0; // No discount if no NFTs are found or an error occurs
 };
 
-const ProductCard = ({ name, price, imageUrl, updateProductData }: ProductCardProps) => {
+const ProductCard = ({ name, price, imageUrl, updateProductData, setAppliedDiscounts }: ProductCardProps) => {
   const [quantity, setQuantity] = useState(0);
   const { address } = useAccount();
   const [discountedPrice, setDiscountedPrice] = useState(price);
@@ -87,9 +92,19 @@ const ProductCard = ({ name, price, imageUrl, updateProductData }: ProductCardPr
     updateProductData(name, discountedPrice, quantity + 1);
   };
 
+  // useEffect(() => {
+  //   if (address) {
+  //     checkNFTOwnership(address).then((discount) => {
+  //       const newPrice = price * (1 - discount / 100);
+  //       setDiscountedPrice(newPrice);
+  //       setDiscount(discount);
+  //     });
+  //   }
+  // }, [address, price]);
+
   useEffect(() => {
     if (address) {
-      checkNFTOwnership(address).then((discount) => {
+      checkNFTOwnership(address, setAppliedDiscounts).then((discount) => {
         const newPrice = price * (1 - discount / 100);
         setDiscountedPrice(newPrice);
         setDiscount(discount);
@@ -145,6 +160,13 @@ const ProductCard = ({ name, price, imageUrl, updateProductData }: ProductCardPr
 };
 
 export default function WhyUseIt() {
+  const [appliedDiscounts, setAppliedDiscounts] = useState<{ [key: string]: boolean }>({
+    standWithCrypto: false,
+    otherStandWithCrypto: false,
+    ens1: false,
+    ens2: false,
+    cryptoVerb: false
+  });
   const [totalPrice, setTotalPrice] = useState(0);
   const [productsData, setProductsData] = useState<{ name: string, price: number, quantity: number }[]>([]);
   const [hostedUrl, setHostedUrl] = useState('');
@@ -197,7 +219,7 @@ export default function WhyUseIt() {
       "metadata": {
         "products": productsDataToSend
       },
-      "redirect_url": "https://satstand.vercel.app/mint"
+      "redirect_url": "https://satoshisstand.com/mint"
     });
 
     const requestOptions = {
@@ -236,32 +258,33 @@ export default function WhyUseIt() {
 
           <ul className="items-left flex flex-col justify-center">
             <li className="inline-flex items-center justify-start gap-4">
-              <ArrowRightIcon width="24" height="24" />
+              {appliedDiscounts.standWithCrypto ? <CheckboxIcon width="24" height="24" /> : <BoxIcon width="24" height="24" />}
               <span className="font-inter text-xl font-normal leading-7 text-white">
                 {' '}
                 <a href="https://www.standwithcrypto.org/" target="_blank">
                   Stand with crypto
-                </a>{' '}
+                </a>
                 — 10% off
+                {appliedDiscounts.standWithCrypto && <span className="text-green-500"> - discount applied!</span>}
               </span>
             </li>
 
             <li className="mt-5 inline-flex items-center justify-start gap-4">
-              <ArrowRightIcon width="24" height="24" />
+              {(appliedDiscounts.ens1 || appliedDiscounts.ens2) ? <CheckboxIcon width="24" height="24" /> : <BoxIcon width="24" height="24" />}
               <span className="font-inter text-xl font-normal leading-7 text-white">
                 <a href="https://app.ens.domains/" target="_blank">
                   Ethereum Name Service (ENS) name
                 </a>{' '}
                 — 10% off
+                {(appliedDiscounts.ens1 || appliedDiscounts.ens2) && <span className="text-green-500"> - discount applied!</span>}
               </span>
             </li>
             <li className="mt-5 inline-flex items-center justify-start gap-4">
-              <ArrowRightIcon width="24" height="24" />
+              {appliedDiscounts.cryptoVerb ? <CheckboxIcon width="24" height="24" /> : <BoxIcon width="24" height="24" />}
               <span className="font-inter text-xl font-normal leading-7 text-white">
-
                 CryptoVerb
-
                 — 10% off
+                {appliedDiscounts.cryptoVerb && <span className="text-green-500"> - discount applied!</span>}
               </span>
             </li>
           </ul>
@@ -277,6 +300,8 @@ export default function WhyUseIt() {
               price={product.price}
               imageUrl={product.imageUrl} // Pass imageUrl here
               updateProductData={updateProductData}
+              setAppliedDiscounts={setAppliedDiscounts}
+
             />
           </div>
         ))}
@@ -327,7 +352,6 @@ export default function WhyUseIt() {
                 <QRCode value={qrCodeValue} size={116} />
               </div>
               <p>scan QR or click PAY</p>
-
               <Button
                 buttonContent="PAY"
                 onClick={() => window.open(hostedUrl, '_blank')}
