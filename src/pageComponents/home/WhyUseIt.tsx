@@ -22,8 +22,6 @@ const products = [
   { name: "Onchain summer sunglasses", price: 35, imageUrl: "https://www.lockerroomsportsapparel.com/cdn/shop/products/c24.jpg?v=1681920691" },
   { name: "Bit by Bit Childrens Book", price: 30, imageUrl: '/book.png'},
   // Add the rest of products here...
-
-  // 
 ];
 
 interface ProductCardProps {
