@@ -13,10 +13,10 @@ import { url } from 'inspector';
 
 
 const products = [
-  { name: "Coin Tee", price: 15, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9600_b4e81208-fd06-4205-b0d8-739bcaa527ac.jpg?v=1707459407" },
-  { name: "Base Tee", price: 20, imageUrl: "https://m.media-amazon.com/images/I/A13usaonutL._CLa%7C2140%2C2000%7C71gTgdiSrwL.png%7C0%2C0%2C2140%2C2000%2B0.0%2C0.0%2C2140.0%2C2000.0_AC_UY1000_.png" },
-  { name: "Coin Hat", price: 20, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9889.jpg?v=1707459173" },
-  { name: "Base Logo Hat", price: 25, imageUrl: "https://i.ebayimg.com/images/g/wjAAAOSwws1iock7/s-l1200.jpg" },
+  { name: "Coin Tee", price: 1, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9600_b4e81208-fd06-4205-b0d8-739bcaa527ac.jpg?v=1707459407" },
+  { name: "Base Tee", price: 20, imageUrl:'/baseT.png' },
+  // { name: "Coin Hat", price: 20, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9889.jpg?v=1707459173" },
+  { name: "Base Hat", price: 25, imageUrl: '/baseHat.png' },
   { name: "Shadowy Super Coder Hoodie", price: 60, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9694.jpg?v=1707459485" },
   { name: "Bitcoin Whitepaper Hoodie", price: 60, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9641.jpg?v=1707459629" },
   { name: "Onchain summer sunglasses", price: 35, imageUrl: "https://www.lockerroomsportsapparel.com/cdn/shop/products/c24.jpg?v=1681920691" },
@@ -149,6 +149,7 @@ const ProductCard = ({ name, price, imageUrl, updateProductData, setAppliedDisco
         <p className="block font-sans text-sm antialiased font-normal leading-normal text-gray-700 opacity-75">
           {/* Description can be added here if needed */}
         </p>
+
       </div>
       <div className="flex items-center justify-center space-x-2 p-4">
         <button onClick={decrement} className="flex items-center justify-center h-10 w-10 rounded-full border border-gray-300 bg-gray-100 text-xl font-bold hover:bg-gray-200 shadow">{<MinusIcon />}</button>
@@ -265,7 +266,7 @@ export default function WhyUseIt() {
                   Stand with crypto
                 </a>
                 — 10% off
-                {appliedDiscounts.standWithCrypto && <span className="text-green-500"> - discount applied!</span>}
+                {appliedDiscounts.standWithCrypto && <span className="text-green-500">  discount applied!</span>}
               </span>
             </li>
 
@@ -276,15 +277,15 @@ export default function WhyUseIt() {
                   Ethereum Name Service (ENS) name
                 </a>{' '}
                 — 10% off
-                {(appliedDiscounts.ens1 || appliedDiscounts.ens2) && <span className="text-green-500"> - discount applied!</span>}
+                {(appliedDiscounts.ens1 || appliedDiscounts.ens2) && <span className="text-green-500">  discount applied!</span>}
               </span>
             </li>
             <li className="mt-5 inline-flex items-center justify-start gap-4">
               {appliedDiscounts.cryptoVerb ? <CheckboxIcon width="24" height="24" /> : <BoxIcon width="24" height="24" />}
               <span className="font-inter text-xl font-normal leading-7 text-white">
-                CryptoVerb
+                CryptoVerbs
                 — 10% off
-                {appliedDiscounts.cryptoVerb && <span className="text-green-500"> - discount applied!</span>}
+                {appliedDiscounts.cryptoVerb && <span className="text-green-500">  discount applied!</span>}
               </span>
             </li>
           </ul>
