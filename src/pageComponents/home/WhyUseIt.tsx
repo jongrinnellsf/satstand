@@ -13,14 +13,14 @@ import { url } from 'inspector';
 
 
 const products = [
-  { name: "Coin Tee", price: 1, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9600_b4e81208-fd06-4205-b0d8-739bcaa527ac.jpg?v=1707459407" },
-  { name: "Base Tee", price: 20, imageUrl:'/baseT.png' },
+  { name: "Coin Tee", price: 15, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9600_b4e81208-fd06-4205-b0d8-739bcaa527ac.jpg?v=1707459407", type: "shirt", sizes: ["XS", "S", "M", "L", "XL", "2XL"] },
+  { name: "Base Tee", price: 20, imageUrl: '/baseT.png', type: "shirt", sizes: ["XS", "S", "M", "L", "XL", "2XL"] },
   // { name: "Coin Hat", price: 20, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9889.jpg?v=1707459173" },
   { name: "Base Hat", price: 25, imageUrl: '/baseHat.png' },
   { name: "Shadowy Super Coder Hoodie", price: 60, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9694.jpg?v=1707459485" },
   { name: "Bitcoin Whitepaper Hoodie", price: 60, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9641.jpg?v=1707459629" },
   { name: "Onchain summer sunglasses", price: 35, imageUrl: "https://www.lockerroomsportsapparel.com/cdn/shop/products/c24.jpg?v=1681920691" },
-  { name: "Bit by Bit Childrens Book", price: 30, imageUrl: '/book.png'},
+  { name: "Bit by Bit Childrens Book", price: 30, imageUrl: '/book.png' },
   // Add the rest of products here...
 ];
 
@@ -58,19 +58,19 @@ const checkNFTOwnership = async (walletAddress: string, setAppliedDiscounts: Rea
     let discount = 0;
     contracts.forEach((contract: { contract_address: string }) => {
       if (contract.contract_address === "0x9D90669665607F08005CAe4A7098143f554c59EF") {
-        discount += 10;
+        discount += 5;
         setAppliedDiscounts(prev => ({ ...prev, standWithCrypto: true }));
       } else if (contract.contract_address === "0x918144e4916eb656Db48F38329D72517a810f702") {
-        discount += 10;
+        discount += 5;
         setAppliedDiscounts(prev => ({ ...prev, otherStandWithCrypto: true }));
       } else if (contract.contract_address === "0xD4416b13d2b3a9aBae7AcD5D6C2BbDBE25686401") {
-        discount += 10;
+        discount += 5;
         setAppliedDiscounts(prev => ({ ...prev, ens1: true }));
       } else if (contract.contract_address === "0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85") {
-        discount += 10;
+        discount += 5;
         setAppliedDiscounts(prev => ({ ...prev, ens2: true }));
       } else if (contract.contract_address === "0x9C8d37F419440c4D746A45f6ba6dAcB5DF158e19") {
-        discount += 10;
+        discount += 5;
         setAppliedDiscounts(prev => ({ ...prev, cryptoVerb: true }));
       }
     });
@@ -92,15 +92,6 @@ const ProductCard = ({ name, price, imageUrl, updateProductData, setAppliedDisco
     updateProductData(name, discountedPrice, quantity + 1);
   };
 
-  // useEffect(() => {
-  //   if (address) {
-  //     checkNFTOwnership(address).then((discount) => {
-  //       const newPrice = price * (1 - discount / 100);
-  //       setDiscountedPrice(newPrice);
-  //       setDiscount(discount);
-  //     });
-  //   }
-  // }, [address, price]);
 
   useEffect(() => {
     if (address) {
@@ -265,7 +256,7 @@ export default function WhyUseIt() {
                 <a href="https://www.standwithcrypto.org/" target="_blank">
                   Stand with crypto
                 </a>
-                — 10% off
+                — 5% off
                 {appliedDiscounts.standWithCrypto && <span className="text-green-500">  discount applied!</span>}
               </span>
             </li>
@@ -276,7 +267,7 @@ export default function WhyUseIt() {
                 <a href="https://app.ens.domains/" target="_blank">
                   Ethereum Name Service (ENS) name
                 </a>{' '}
-                — 10% off
+                — 5% off
                 {(appliedDiscounts.ens1 || appliedDiscounts.ens2) && <span className="text-green-500">  discount applied!</span>}
               </span>
             </li>
@@ -284,7 +275,7 @@ export default function WhyUseIt() {
               {appliedDiscounts.cryptoVerb ? <CheckboxIcon width="24" height="24" /> : <BoxIcon width="24" height="24" />}
               <span className="font-inter text-xl font-normal leading-7 text-white">
                 CryptoVerbs
-                — 10% off
+                — 5% off
                 {appliedDiscounts.cryptoVerb && <span className="text-green-500">  discount applied!</span>}
               </span>
             </li>
