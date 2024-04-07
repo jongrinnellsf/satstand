@@ -13,15 +13,41 @@ import { url } from 'inspector';
 
 
 const products = [
-  { name: "Coin Tee", price: 15, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9600_b4e81208-fd06-4205-b0d8-739bcaa527ac.jpg?v=1707459407", type: "shirt", sizes: ["XS", "S", "M", "L", "XL", "2XL"] },
-  { name: "Base Tee", price: 20, imageUrl: '/baseT.png', type: "shirt", sizes: ["XS", "S", "M", "L", "XL", "2XL"] },
-  // { name: "Coin Hat", price: 20, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9889.jpg?v=1707459173" },
+  { name: "Coin Tee: XS", price: 15, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9600_b4e81208-fd06-4205-b0d8-739bcaa527ac.jpg?v=1707459407" },
+  { name: "Coin Tee: Small", price: 15, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9600_b4e81208-fd06-4205-b0d8-739bcaa527ac.jpg?v=1707459407" },
+  { name: "Coin Tee: Medium", price: 15, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9600_b4e81208-fd06-4205-b0d8-739bcaa527ac.jpg?v=1707459407" },
+  { name: "Coin Tee: Large", price: 15, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9600_b4e81208-fd06-4205-b0d8-739bcaa527ac.jpg?v=1707459407" },
+  { name: "Coin Tee: XL", price: 15, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9600_b4e81208-fd06-4205-b0d8-739bcaa527ac.jpg?v=1707459407" },
+  { name: "Coin Tee: 2XL", price: 15, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9600_b4e81208-fd06-4205-b0d8-739bcaa527ac.jpg?v=1707459407" },
+
+
+  { name: "Base Tee: XS", price: 20, imageUrl: '/baseT.png' },
+  { name: "Base Tee: Small", price: 20, imageUrl: '/baseT.png' },
+  { name: "Base Tee: Medium", price: 20, imageUrl: '/baseT.png' },
+  { name: "Base Tee: Large", price: 20, imageUrl: '/baseT.png' },
+  { name: "Base Tee: XL", price: 20, imageUrl: '/baseT.png' },
+  { name: "Base Tee: 2XL", price: 20, imageUrl: '/baseT.png' },
+
+
+  
   { name: "Base Hat", price: 25, imageUrl: '/baseHat.png' },
-  { name: "Shadowy Super Coder Hoodie", price: 60, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9694.jpg?v=1707459485" },
-  { name: "Bitcoin Whitepaper Hoodie", price: 60, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9641.jpg?v=1707459629" },
   { name: "Onchain summer sunglasses", price: 35, imageUrl: "https://www.lockerroomsportsapparel.com/cdn/shop/products/c24.jpg?v=1681920691" },
   { name: "Bit by Bit Childrens Book", price: 30, imageUrl: '/book.png' },
-  // Add the rest of products here...
+
+  { name: "Shadowy Super Coder Hoodie: Extra Small", price: 60, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9694.jpg?v=1707459485" },
+  { name: "Shadowy Super Coder Hoodie: Small", price: 60, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9694.jpg?v=1707459485" },
+  { name: "Shadowy Super Coder Hoodie: Medium", price: 60, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9694.jpg?v=1707459485" },
+  { name: "Shadowy Super Coder Hoodie: Large", price: 60, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9694.jpg?v=1707459485" },
+  { name: "Shadowy Super Coder Hoodie: XL", price: 60, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9694.jpg?v=1707459485" },
+  { name: "Shadowy Super Coder Hoodie: 2XL", price: 60, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9694.jpg?v=1707459485" },
+
+
+  { name: "Whitepaper Hoodie: Extra Small", price: 60, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9641.jpg?v=1707459629" },
+  { name: "Whitepaper Hoodie: Small", price: 60, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9641.jpg?v=1707459629" },
+  { name: "Whitepaper Hoodie: Medium", price: 60, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9641.jpg?v=1707459629" },
+  { name: "Whitepaper Hoodie: Large", price: 60, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9641.jpg?v=1707459629" },
+  { name: "Whitepaper Hoodie: XL", price: 60, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9641.jpg?v=1707459629" },
+  { name: "Whitepaper Hoodie: 2XL", price: 60, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9641.jpg?v=1707459629" },
 ];
 
 interface ProductCardProps {
@@ -87,11 +113,12 @@ const ProductCard = ({ name, price, imageUrl, updateProductData, setAppliedDisco
   const [discountedPrice, setDiscountedPrice] = useState(price);
   const [discount, setDiscount] = useState(0);
 
+  // Extract the size from the product name
+  const size = name.split(":").pop()?.trim() ?? '';
   const increment = () => {
     setQuantity(quantity + 1);
     updateProductData(name, discountedPrice, quantity + 1);
   };
-
 
   useEffect(() => {
     if (address) {
@@ -111,6 +138,8 @@ const ProductCard = ({ name, price, imageUrl, updateProductData, setAppliedDisco
   return (
     <div className="relative flex flex-col text-gray-700 bg-[#141519] shadow-md rounded-xl w-full sm:w-96 md:w-96 lg:w-96 xl:w-96">
       <div className="relative mx-4 mt-4 overflow-hidden text-gray-700 bg-white bg-clip-border rounded-xl h-38">
+        {/* Overlay the size on the image */}
+        <div className="absolute top-0 left-0 bg-black text-white text-xs p-1">{size}</div>
         <img
           src={imageUrl}
           alt="product image"
