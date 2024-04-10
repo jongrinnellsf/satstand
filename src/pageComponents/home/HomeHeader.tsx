@@ -1,10 +1,14 @@
 import { clsx } from 'clsx';
 import Header from '../../components/header/Header';
 import styles from './Home.module.css';
+import { useAccount } from 'wagmi';
 
 
 
 export default function HomeHeader() {
+  const { address } = useAccount();
+  
+
 
   return (
     <div className={styles.HomeHeader}>
@@ -24,6 +28,10 @@ export default function HomeHeader() {
         <p className={styles.HomeHeaderParagraph}>
           Get discounted merch for holding NFTs
         </p>
+
+        <p className="text-white">
+  {address ? "Wallet Connected" : "Wallet Not Connected"}
+</p>
         <div>
         </div>
 

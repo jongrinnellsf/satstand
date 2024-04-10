@@ -9,7 +9,12 @@ import { PlusIcon } from '@radix-ui/react-icons';
 import { MinusIcon } from '@radix-ui/react-icons';
 import { CheckboxIcon } from '@radix-ui/react-icons';
 import { BoxIcon } from '@radix-ui/react-icons';
-import { url } from 'inspector';
+import { ExternalLinkIcon } from '@radix-ui/react-icons';
+// import { clsx } from 'clsx';
+// import Header from '../../components/header/Header';
+// import styles from './Home.module.css';
+
+// import { url } from 'inspector';
 
 
 const products = [
@@ -52,11 +57,17 @@ interface ProductCardProps {
   imageUrl: string;
   updateProductData: (name: string, discountedPrice: number, quantity: number) => void;
   setAppliedDiscounts: React.Dispatch<React.SetStateAction<{ [key: string]: boolean }>>;
+  totalNFTs: number;
+  setTotalNFTs: React.Dispatch<React.SetStateAction<number>>;
 }
 
-const checkNFTOwnership = async (walletAddress: string, setAppliedDiscounts: React.Dispatch<React.SetStateAction<{ [key: string]: boolean }>>) => {
 
-  // const checkNFTOwnership = async (walletAddress: string) => {
+
+const checkNFTOwnership = async (
+  walletAddress: string,
+  setAppliedDiscounts: React.Dispatch<React.SetStateAction<{ [key: string]: boolean }>>,
+  setTotalNFTs: React.Dispatch<React.SetStateAction<number>> // Add this line
+) => {
   const SH_API_KEY = process.env.NEXT_PUBLIC_X_API_KEY;
   if (!SH_API_KEY) {
     throw new Error('API_KEY is not defined');
@@ -68,33 +79,31 @@ const checkNFTOwnership = async (walletAddress: string, setAppliedDiscounts: Rea
   };
 
   try {
-    const response = await fetch(`https://api.simplehash.com/api/v0/nfts/contracts?chains=ethereum,base&wallet_addresses=${walletAddress}&contract_addresses=0x9D90669665607F08005CAe4A7098143f554c59EF,0x918144e4916eb656Db48F38329D72517a810f702,0xD4416b13d2b3a9aBae7AcD5D6C2BbDBE25686401,0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85,0x9C8d37F419440c4D746A45f6ba6dAcB5DF158e19`, {
+    const response = await fetch(`https://api.simplehash.com/api/v0/nfts/contracts?chains=base&wallet_addresses=${walletAddress}`, {
       method: 'GET',
       headers: headers
-    });
+    }); 
 
     const data = await response.json();
     const contracts = data.wallets[0]?.contracts;
+    
+    let totalNFTsOwned = 0;
+    contracts.forEach((contract: { contract_address: string, nfts_owned: number }) => {
+      totalNFTsOwned += contract.nfts_owned;
+    });
 
     let discount = 0;
-    contracts.forEach((contract: { contract_address: string }) => {
-      if (contract.contract_address === "0x9D90669665607F08005CAe4A7098143f554c59EF") {
-        discount += 5;
-        setAppliedDiscounts(prev => ({ ...prev, standWithCrypto: true }));
-      } else if (contract.contract_address === "0x918144e4916eb656Db48F38329D72517a810f702") {
-        discount += 5;
-        setAppliedDiscounts(prev => ({ ...prev, otherStandWithCrypto: true }));
-      } else if (contract.contract_address === "0xD4416b13d2b3a9aBae7AcD5D6C2BbDBE25686401") {
-        discount += 5;
-        setAppliedDiscounts(prev => ({ ...prev, ens1: true }));
-      } else if (contract.contract_address === "0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85") {
-        discount += 5;
-        setAppliedDiscounts(prev => ({ ...prev, ens2: true }));
-      } else if (contract.contract_address === "0x9C8d37F419440c4D746A45f6ba6dAcB5DF158e19") {
-        discount += 5;
-        setAppliedDiscounts(prev => ({ ...prev, cryptoVerb: true }));
-      }
-    });
+    if (totalNFTsOwned > 20) {
+      discount = 15;
+    } else if (totalNFTsOwned > 10) {
+      discount = 10;
+    } else if (totalNFTsOwned > 0) {
+      discount = 5;
+    }
+    console.log(discount)
+
+    setTotalNFTs(totalNFTsOwned); // Set the totalNFTs state
+
     return discount;
   } catch (error) {
     console.error('Error checking NFT ownership:', error);
@@ -102,11 +111,12 @@ const checkNFTOwnership = async (walletAddress: string, setAppliedDiscounts: Rea
   return 0; // No discount if no NFTs are found or an error occurs
 };
 
-const ProductCard = ({ name, price, imageUrl, updateProductData, setAppliedDiscounts }: ProductCardProps) => {
+const ProductCard = ({ name, price, imageUrl, updateProductData, setAppliedDiscounts, totalNFTs, setTotalNFTs }: ProductCardProps & { totalNFTs: number, setTotalNFTs: React.Dispatch<React.SetStateAction<number>> }) => {
   const [quantity, setQuantity] = useState(0);
   const { address } = useAccount();
   const [discountedPrice, setDiscountedPrice] = useState(price);
   const [discount, setDiscount] = useState(0);
+
 
   // Extract the size from the product name
   // const size = name.split(":").pop()?.trim() ?? '';
@@ -119,13 +129,13 @@ const ProductCard = ({ name, price, imageUrl, updateProductData, setAppliedDisco
 
   useEffect(() => {
     if (address) {
-      checkNFTOwnership(address, setAppliedDiscounts).then((discount) => {
+      checkNFTOwnership(address, setAppliedDiscounts, setTotalNFTs).then((discount) => { // Pass setTotalNFTs here
         const newPrice = price * (1 - discount / 100);
         setDiscountedPrice(newPrice);
         setDiscount(discount);
       });
     }
-  }, [address, price]);
+  }, [address, price, setTotalNFTs]); // Add setTotalNFTs to the dependency array
 
   const decrement = () => {
     setQuantity(quantity - 1 > 0 ? quantity - 1 : 0);
@@ -182,11 +192,6 @@ const ProductCard = ({ name, price, imageUrl, updateProductData, setAppliedDisco
 
 export default function WhyUseIt() {
   const [appliedDiscounts, setAppliedDiscounts] = useState<{ [key: string]: boolean }>({
-    standWithCrypto: false,
-    otherStandWithCrypto: false,
-    ens1: false,
-    ens2: false,
-    cryptoVerb: false
   });
   const [totalPrice, setTotalPrice] = useState(0);
   const [productsData, setProductsData] = useState<{ name: string, price: number, quantity: number }[]>([]);
@@ -194,6 +199,7 @@ export default function WhyUseIt() {
   const [resetKey, setResetKey] = useState(0); // Add a key for resetting the component
   const [qrCodeValue, setQRCodeValue] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [totalNFTs, setTotalNFTs] = useState(0);
   const totalQuantity = productsData.reduce((total, product) => total + product.quantity, 0);
 
   const updateProductData = (name: string, discountedPrice: number, quantity: number) => {
@@ -274,40 +280,40 @@ export default function WhyUseIt() {
   return (
     <>
       <section className="mb-24 flex flex-col items-center justify-center">
-
         <div className="w-full md:w-4/5">
-
           <ul className="items-left flex flex-col justify-center">
             <li className="inline-flex items-center justify-start gap-4">
-              {appliedDiscounts.standWithCrypto ? <CheckboxIcon width="24" height="24" /> : <BoxIcon width="24" height="24" />}
-              <span className="font-inter text-xl font-normal leading-7 text-white">
+              {totalNFTs > 0 ? <CheckboxIcon width="24" height="24" /> : <BoxIcon width="24" height="24" />}
+              <span className="font-inter text-m font-normal leading-7 text-white">
                 {' '}
-                <a href="https://www.standwithcrypto.org/" target="_blank">
-                  Stand with crypto
-                </a>
-                — 5% off
-                {appliedDiscounts.standWithCrypto && <span className="text-green-500">  discount applied!</span>}
+                  Own at leat 1 Base NFT — up to 5% off
+                {totalNFTs > 0 && <span className="text-green-500">  discount applied!</span>}
               </span>
             </li>
 
             <li className="mt-5 inline-flex items-center justify-start gap-4">
-              {(appliedDiscounts.ens1 || appliedDiscounts.ens2) ? <CheckboxIcon width="24" height="24" /> : <BoxIcon width="24" height="24" />}
-              <span className="font-inter text-xl font-normal leading-7 text-white">
-                <a href="https://app.ens.domains/" target="_blank">
-                  Ethereum Name Service (ENS) name
-                </a>{' '}
-                — 5% off
-                {(appliedDiscounts.ens1 || appliedDiscounts.ens2) && <span className="text-green-500">  discount applied!</span>}
+              {totalNFTs >= 10 ? <CheckboxIcon width="24" height="24" /> : <BoxIcon width="24" height="24" />}
+              <span className="font-inter text-m font-normal leading-7 text-white">
+              Own at least 10 Base NFTs — up to 10% off
+
+                {totalNFTs >= 10 && <span className="text-green-500">  discount applied!</span>}
               </span>
             </li>
             <li className="mt-5 inline-flex items-center justify-start gap-4">
-              {appliedDiscounts.cryptoVerb ? <CheckboxIcon width="24" height="24" /> : <BoxIcon width="24" height="24" />}
-              <span className="font-inter text-xl font-normal leading-7 text-white">
-                CryptoVerbs
-                — 5% off
-                {appliedDiscounts.cryptoVerb && <span className="text-green-500">  discount applied!</span>}
-              </span>
+              {totalNFTs >= 20 ? <CheckboxIcon width="24" height="24" /> : <BoxIcon width="24" height="24" />}
+              <span className="font-inter text-m font-normal leading-7 text-white">
+              Own at least 20 Base NFTs — up to 15% off
+                {totalNFTs >= 20 && <span className="text-green-500">  discount applied!</span>}
+                </span>
             </li>
+            <li className="mt-5 inline-flex items-center justify-start gap-4">
+            <ExternalLinkIcon width="24" height="24" />
+              <span className="font-inter text-m font-normal leading-7 text-white">
+              <a href= "https://mint.fun/feed/trending?chain=base" target='blank'> Mint more Base NFTs</a> 🔵
+                </span>
+            </li>
+
+
           </ul>
 
         </div>
@@ -322,7 +328,8 @@ export default function WhyUseIt() {
               imageUrl={product.imageUrl} // Pass imageUrl here
               updateProductData={updateProductData}
               setAppliedDiscounts={setAppliedDiscounts}
-
+              totalNFTs={totalNFTs}
+              setTotalNFTs={setTotalNFTs}
             />
           </div>
         ))}
