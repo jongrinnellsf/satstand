@@ -246,7 +246,7 @@ export default function WhyUseIt() {
       "metadata": {
         "products": productsDataToSend
       },
-      "redirect_url": "https://satoshisstand.com/mint"
+      // "redirect_url": "https://satoshisstand.com/mint"
     });
 
     const requestOptions = {
