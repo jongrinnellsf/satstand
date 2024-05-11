@@ -18,9 +18,9 @@ import { ExternalLinkIcon } from '@radix-ui/react-icons';
 
 
 const products = [
-  { name: "Base Hat", price: 25, imageUrl: '/baseHat.png' },
-  { name: "Onchain summer sunglasses", price: 35, imageUrl: "https://www.lockerroomsportsapparel.com/cdn/shop/products/c24.jpg?v=1681920691" },
-  { name: "Bit by Bit Childrens Book", price: 35, imageUrl: '/book.png' },
+  { name: "Base Hat", price: 20, imageUrl: '/baseHat.png' },
+  { name: "Onchain summer sunglasses", price: 20, imageUrl: "https://www.lockerroomsportsapparel.com/cdn/shop/products/c24.jpg?v=1681920691" },
+  { name: "Bit by Bit Childrens Book", price: 30, imageUrl: '/book.png' },
   
   { name: "Coin Tee: XS", price: 15, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9600_b4e81208-fd06-4205-b0d8-739bcaa527ac.jpg?v=1707459407" },
   { name: "Coin Tee: Small", price: 15, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9600_b4e81208-fd06-4205-b0d8-739bcaa527ac.jpg?v=1707459407" },
@@ -36,19 +36,19 @@ const products = [
   { name: "Base Tee: XL", price: 20, imageUrl: '/baseT.png' },
   { name: "Base Tee: 2XL", price: 20, imageUrl: '/baseT.png' },
 
-  { name: "Shadowy Super Coder Hoodie: Extra Small", price: 60, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9694.jpg?v=1707459485" },
-  { name: "Shadowy Super Coder Hoodie: Small", price: 60, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9694.jpg?v=1707459485" },
-  { name: "Shadowy Super Coder Hoodie: Medium", price: 60, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9694.jpg?v=1707459485" },
-  { name: "Shadowy Super Coder Hoodie: Large", price: 60, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9694.jpg?v=1707459485" },
-  { name: "Shadowy Super Coder Hoodie: XL", price: 60, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9694.jpg?v=1707459485" },
-  { name: "Shadowy Super Coder Hoodie: 2XL", price: 60, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9694.jpg?v=1707459485" },
+  { name: "Shadowy Super Coder Hoodie: Extra Small", price: 45, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9694.jpg?v=1707459485" },
+  { name: "Shadowy Super Coder Hoodie: Small", price: 45, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9694.jpg?v=1707459485" },
+  { name: "Shadowy Super Coder Hoodie: Medium", price: 45, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9694.jpg?v=1707459485" },
+  { name: "Shadowy Super Coder Hoodie: Large", price: 45, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9694.jpg?v=1707459485" },
+  { name: "Shadowy Super Coder Hoodie: XL", price: 45, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9694.jpg?v=1707459485" },
+  { name: "Shadowy Super Coder Hoodie: 2XL", price: 45, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9694.jpg?v=1707459485" },
 
-  { name: "Whitepaper Hoodie: Extra Small", price: 60, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9641.jpg?v=1707459629" },
-  { name: "Whitepaper Hoodie: Small", price: 60, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9641.jpg?v=1707459629" },
-  { name: "Whitepaper Hoodie: Medium", price: 60, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9641.jpg?v=1707459629" },
-  { name: "Whitepaper Hoodie: Large", price: 60, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9641.jpg?v=1707459629" },
-  { name: "Whitepaper Hoodie: XL", price: 60, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9641.jpg?v=1707459629" },
-  { name: "Whitepaper Hoodie: 2XL", price: 60, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9641.jpg?v=1707459629" },
+  { name: "Whitepaper Hoodie: Extra Small", price: 45, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9641.jpg?v=1707459629" },
+  { name: "Whitepaper Hoodie: Small", price: 45, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9641.jpg?v=1707459629" },
+  { name: "Whitepaper Hoodie: Medium", price: 45, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9641.jpg?v=1707459629" },
+  { name: "Whitepaper Hoodie: Large", price: 45, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9641.jpg?v=1707459629" },
+  { name: "Whitepaper Hoodie: XL", price: 45, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9641.jpg?v=1707459629" },
+  { name: "Whitepaper Hoodie: 2XL", price: 45, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9641.jpg?v=1707459629" },
 ];
 
 interface ProductCardProps {
@@ -94,11 +94,11 @@ const checkNFTOwnership = async (
 
     let discount = 0;
     if (totalNFTsOwned > 20) {
-      discount = 15;
+      discount = 30;
     } else if (totalNFTsOwned > 10) {
-      discount = 10;
+      discount = 20;
     } else if (totalNFTsOwned > 0) {
-      discount = 5;
+      discount = 10;
     }
     console.log(discount)
 
