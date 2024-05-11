@@ -18,8 +18,8 @@ import { ExternalLinkIcon } from '@radix-ui/react-icons';
 
 
 const products = [
-  { name: "Base Hat", price: 20, imageUrl: '/baseHat.png' },
-  { name: "Onchain summer sunglasses", price: 20, imageUrl: "https://www.lockerroomsportsapparel.com/cdn/shop/products/c24.jpg?v=1681920691" },
+  { name: "Base Hat", price: 15, imageUrl: '/baseHat.png' },
+  { name: "Onchain summer sunglasses", price: 15, imageUrl: "https://www.lockerroomsportsapparel.com/cdn/shop/products/c24.jpg?v=1681920691" },
   { name: "Bit by Bit Childrens Book", price: 30, imageUrl: '/book.png' },
   
   { name: "Coin Tee: XS", price: 15, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9600_b4e81208-fd06-4205-b0d8-739bcaa527ac.jpg?v=1707459407" },
@@ -286,7 +286,7 @@ export default function WhyUseIt() {
               {totalNFTs > 0 ? <CheckboxIcon width="24" height="24" /> : <BoxIcon width="24" height="24" />}
               <span className="font-inter text-m font-normal leading-7 text-white">
                 {' '}
-                  Own at leat 1 Base NFT — up to 5% off
+                  Own at leat 1 Base NFT — up to 10% off
                 {totalNFTs > 0 && <span className="text-green-500">  discount applied!</span>}
               </span>
             </li>
@@ -294,7 +294,7 @@ export default function WhyUseIt() {
             <li className="mt-5 inline-flex items-center justify-start gap-4">
               {totalNFTs >= 10 ? <CheckboxIcon width="24" height="24" /> : <BoxIcon width="24" height="24" />}
               <span className="font-inter text-m font-normal leading-7 text-white">
-              Own at least 10 Base NFTs — up to 10% off
+              Own at least 10 Base NFTs — up to 20% off
 
                 {totalNFTs >= 10 && <span className="text-green-500">  discount applied!</span>}
               </span>
@@ -302,7 +302,7 @@ export default function WhyUseIt() {
             <li className="mt-5 inline-flex items-center justify-start gap-4">
               {totalNFTs >= 20 ? <CheckboxIcon width="24" height="24" /> : <BoxIcon width="24" height="24" />}
               <span className="font-inter text-m font-normal leading-7 text-white">
-              Own at least 20 Base NFTs — up to 15% off
+              Own at least 20 Base NFTs — up to 30% off
                 {totalNFTs >= 20 && <span className="text-green-500">  discount applied!</span>}
                 </span>
             </li>
