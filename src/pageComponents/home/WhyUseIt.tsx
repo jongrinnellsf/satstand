@@ -18,37 +18,37 @@ import { ExternalLinkIcon } from '@radix-ui/react-icons';
 
 
 const products = [
-  { name: "Base Hat", price: 15, imageUrl: '/baseHat.png' },
-  { name: "Onchain summer sunglasses", price: 15, imageUrl: "https://www.lockerroomsportsapparel.com/cdn/shop/products/c24.jpg?v=1681920691" },
-  { name: "Bit by Bit Childrens Book", price: 30, imageUrl: '/book.png' },
+  { name: "Base Hat", price: 10, imageUrl: '/baseHat.png' },
+  { name: "Onchain summer sunglasses", price: 10, imageUrl: "https://www.lockerroomsportsapparel.com/cdn/shop/products/c24.jpg?v=1681920691" },
+  { name: "Bit by Bit Childrens Book", price: 25, imageUrl: '/book.png' },
   
-  { name: "Coin Tee: XS", price: 15, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9600_b4e81208-fd06-4205-b0d8-739bcaa527ac.jpg?v=1707459407" },
-  { name: "Coin Tee: Small", price: 15, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9600_b4e81208-fd06-4205-b0d8-739bcaa527ac.jpg?v=1707459407" },
-  { name: "Coin Tee: Medium", price: 15, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9600_b4e81208-fd06-4205-b0d8-739bcaa527ac.jpg?v=1707459407" },
-  { name: "Coin Tee: Large", price: 15, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9600_b4e81208-fd06-4205-b0d8-739bcaa527ac.jpg?v=1707459407" },
-  { name: "Coin Tee: XL", price: 15, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9600_b4e81208-fd06-4205-b0d8-739bcaa527ac.jpg?v=1707459407" },
-  { name: "Coin Tee: 2XL", price: 15, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9600_b4e81208-fd06-4205-b0d8-739bcaa527ac.jpg?v=1707459407" },
+  { name: "Coin Tee: XS", price: 10, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9600_b4e81208-fd06-4205-b0d8-739bcaa527ac.jpg?v=1707459407" },
+  { name: "Coin Tee: Small", price: 10, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9600_b4e81208-fd06-4205-b0d8-739bcaa527ac.jpg?v=1707459407" },
+  { name: "Coin Tee: Medium", price: 10, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9600_b4e81208-fd06-4205-b0d8-739bcaa527ac.jpg?v=1707459407" },
+  { name: "Coin Tee: Large", price: 10, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9600_b4e81208-fd06-4205-b0d8-739bcaa527ac.jpg?v=1707459407" },
+  { name: "Coin Tee: XL", price: 10, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9600_b4e81208-fd06-4205-b0d8-739bcaa527ac.jpg?v=1707459407" },
+  { name: "Coin Tee: 2XL", price: 10, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9600_b4e81208-fd06-4205-b0d8-739bcaa527ac.jpg?v=1707459407" },
 
-  { name: "Base Tee: XS", price: 20, imageUrl: '/baseT.png' },
-  { name: "Base Tee: Small", price: 20, imageUrl: '/baseT.png' },
-  { name: "Base Tee: Medium", price: 20, imageUrl: '/baseT.png' },
-  { name: "Base Tee: Large", price: 20, imageUrl: '/baseT.png' },
-  { name: "Base Tee: XL", price: 20, imageUrl: '/baseT.png' },
-  { name: "Base Tee: 2XL", price: 20, imageUrl: '/baseT.png' },
+  { name: "Base Tee: XS", price: 15, imageUrl: '/baseT.png' },
+  { name: "Base Tee: Small", price: 15, imageUrl: '/baseT.png' },
+  { name: "Base Tee: Medium", price: 15, imageUrl: '/baseT.png' },
+  { name: "Base Tee: Large", price: 15, imageUrl: '/baseT.png' },
+  { name: "Base Tee: XL", price: 15, imageUrl: '/baseT.png' },
+  { name: "Base Tee: 2XL", price: 15, imageUrl: '/baseT.png' },
 
-  { name: "Shadowy Super Coder Hoodie: Extra Small", price: 45, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9694.jpg?v=1707459485" },
-  { name: "Shadowy Super Coder Hoodie: Small", price: 45, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9694.jpg?v=1707459485" },
-  { name: "Shadowy Super Coder Hoodie: Medium", price: 45, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9694.jpg?v=1707459485" },
-  { name: "Shadowy Super Coder Hoodie: Large", price: 45, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9694.jpg?v=1707459485" },
-  { name: "Shadowy Super Coder Hoodie: XL", price: 45, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9694.jpg?v=1707459485" },
-  { name: "Shadowy Super Coder Hoodie: 2XL", price: 45, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9694.jpg?v=1707459485" },
+  { name: "Shadowy Super Coder Hoodie: Extra Small", price: 25, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9694.jpg?v=1707459485" },
+  { name: "Shadowy Super Coder Hoodie: Small", price: 25, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9694.jpg?v=1707459485" },
+  { name: "Shadowy Super Coder Hoodie: Medium", price: 25, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9694.jpg?v=1707459485" },
+  { name: "Shadowy Super Coder Hoodie: Large", price: 25, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9694.jpg?v=1707459485" },
+  { name: "Shadowy Super Coder Hoodie: XL", price: 25, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9694.jpg?v=1707459485" },
+  { name: "Shadowy Super Coder Hoodie: 2XL", price: 25, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9694.jpg?v=1707459485" },
 
-  { name: "Whitepaper Hoodie: Extra Small", price: 45, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9641.jpg?v=1707459629" },
-  { name: "Whitepaper Hoodie: Small", price: 45, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9641.jpg?v=1707459629" },
-  { name: "Whitepaper Hoodie: Medium", price: 45, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9641.jpg?v=1707459629" },
-  { name: "Whitepaper Hoodie: Large", price: 45, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9641.jpg?v=1707459629" },
-  { name: "Whitepaper Hoodie: XL", price: 45, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9641.jpg?v=1707459629" },
-  { name: "Whitepaper Hoodie: 2XL", price: 45, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9641.jpg?v=1707459629" },
+  { name: "Whitepaper Hoodie: Extra Small", price: 25, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9641.jpg?v=1707459629" },
+  { name: "Whitepaper Hoodie: Small", price: 25, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9641.jpg?v=1707459629" },
+  { name: "Whitepaper Hoodie: Medium", price: 25, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9641.jpg?v=1707459629" },
+  { name: "Whitepaper Hoodie: Large", price: 25, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9641.jpg?v=1707459629" },
+  { name: "Whitepaper Hoodie: XL", price: 25, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9641.jpg?v=1707459629" },
+  { name: "Whitepaper Hoodie: 2XL", price: 25, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9641.jpg?v=1707459629" },
 ];
 
 interface ProductCardProps {
@@ -93,12 +93,12 @@ const checkNFTOwnership = async (
     });
 
     let discount = 0;
-    if (totalNFTsOwned > 20) {
+    if (totalNFTsOwned > 9) {
       discount = 30;
-    } else if (totalNFTsOwned > 10) {
-      discount = 20;
+    } else if (totalNFTsOwned > 4) {
+      discount = 25;
     } else if (totalNFTsOwned > 0) {
-      discount = 10;
+      discount = 20;
     }
     console.log(discount)
 
@@ -286,7 +286,7 @@ export default function WhyUseIt() {
               {totalNFTs > 0 ? <CheckboxIcon width="24" height="24" /> : <BoxIcon width="24" height="24" />}
               <span className="font-inter text-m font-normal leading-7 text-white">
                 {' '}
-                  Own at leat 1 Base NFT — up to 10% off
+                  Own at leat 1 Base NFT — up to 20% off
                 {totalNFTs > 0 && <span className="text-green-500">  discount applied!</span>}
               </span>
             </li>
@@ -294,7 +294,7 @@ export default function WhyUseIt() {
             <li className="mt-5 inline-flex items-center justify-start gap-4">
               {totalNFTs >= 10 ? <CheckboxIcon width="24" height="24" /> : <BoxIcon width="24" height="24" />}
               <span className="font-inter text-m font-normal leading-7 text-white">
-              Own at least 10 Base NFTs — up to 20% off
+              Own at least 5 Base NFTs — up to 25% off
 
                 {totalNFTs >= 10 && <span className="text-green-500">  discount applied!</span>}
               </span>
@@ -302,7 +302,7 @@ export default function WhyUseIt() {
             <li className="mt-5 inline-flex items-center justify-start gap-4">
               {totalNFTs >= 20 ? <CheckboxIcon width="24" height="24" /> : <BoxIcon width="24" height="24" />}
               <span className="font-inter text-m font-normal leading-7 text-white">
-              Own at least 20 Base NFTs — up to 30% off
+              Own at least 10 Base NFTs — up to 30% off
                 {totalNFTs >= 20 && <span className="text-green-500">  discount applied!</span>}
                 </span>
             </li>
