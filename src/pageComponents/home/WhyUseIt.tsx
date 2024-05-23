@@ -9,7 +9,7 @@ import { PlusIcon } from '@radix-ui/react-icons';
 import { MinusIcon } from '@radix-ui/react-icons';
 import { CheckboxIcon } from '@radix-ui/react-icons';
 import { BoxIcon } from '@radix-ui/react-icons';
-import { ExternalLinkIcon } from '@radix-ui/react-icons';
+import { ArrowRightIcon } from '@radix-ui/react-icons';
 
 
 const products = [
@@ -287,24 +287,24 @@ export default function WhyUseIt() {
             </li>
 
             <li className="mt-5 inline-flex items-center justify-start gap-4">
-              {totalNFTs >= 10 ? <CheckboxIcon width="24" height="24" /> : <BoxIcon width="24" height="24" />}
+              {totalNFTs >= 5 ? <CheckboxIcon width="24" height="24" /> : <BoxIcon width="24" height="24" />}
               <span className="font-inter text-m font-normal leading-7 text-white">
               Own at least 5 Base NFTs — up to 25% off
 
-                {totalNFTs >= 10 && <span className="text-green-500">  discount applied!</span>}
+                {totalNFTs >= 5 && <span className="text-green-500">  discount applied!</span>}
               </span>
             </li>
             <li className="mt-5 inline-flex items-center justify-start gap-4">
-              {totalNFTs >= 20 ? <CheckboxIcon width="24" height="24" /> : <BoxIcon width="24" height="24" />}
+              {totalNFTs >= 10 ? <CheckboxIcon width="24" height="24" /> : <BoxIcon width="24" height="24" />}
               <span className="font-inter text-m font-normal leading-7 text-white">
               Own at least 10 Base NFTs — up to 30% off
-                {totalNFTs >= 20 && <span className="text-green-500">  discount applied!</span>}
+                {totalNFTs >= 10 && <span className="text-green-500">  discount applied!</span>}
                 </span>
             </li>
             <li className="mt-5 inline-flex items-center justify-start gap-4">
-            <ExternalLinkIcon width="24" height="24" />
-              <span className="font-inter text-m font-normal leading-7 text-white">
-              <a href= "https://mint.fun/feed/trending?chain=base" target='blank'> Mint more Base NFTs</a> 🔵
+            <ArrowRightIcon width="24" height="24" />
+              <span className="font-inter text-m font-normal leading-7 text-green-500">
+                Want to get a discount? <a href= "https://mint.fun/feed/free?chain=base&range=24h" target='blank'> Tap here to mint more Base NFTs</a> 
                 </span>
             </li>
 
