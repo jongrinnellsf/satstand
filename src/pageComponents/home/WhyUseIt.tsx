@@ -13,8 +13,8 @@ import { ArrowRightIcon } from '@radix-ui/react-icons';
 
 
 const products = [
-  { name: "Coinbase C Hat", price: 5, imageUrl: '/c-hat.png' },
-  { name: "Base Hat", price: 10, imageUrl: '/baseHat.png' },
+  { name: "Hat", price: 5, imageUrl: '/c-hat.png' },
+  // { name: "Base Hat", price: 10, imageUrl: '/baseHat.png' },
   { name: "Socks (Unisex)", price: 5, imageUrl: '/socks.png' },
 
   { name: "Onchain summer sunglasses", price: 5, imageUrl: "https://www.lockerroomsportsapparel.com/cdn/shop/products/c24.jpg?v=1681920691" },
