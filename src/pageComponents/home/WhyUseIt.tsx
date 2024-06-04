@@ -15,9 +15,14 @@ import { ArrowRightIcon } from '@radix-ui/react-icons';
 const products = [
   { name: "Coinbase C Hat", price: 5, imageUrl: '/c-hat.png' },
   { name: "Base Hat", price: 10, imageUrl: '/baseHat.png' },
+  { name: "Socks (Unisex)", price: 5, imageUrl: '/socks.png' },
+
   { name: "Onchain summer sunglasses", price: 5, imageUrl: "https://www.lockerroomsportsapparel.com/cdn/shop/products/c24.jpg?v=1681920691" },
+  
   { name: "Bit by Bit Childrens Book", price: 25, imageUrl: '/book.png' },
-  { name: "BTC Tee: Large only", price: 5, imageUrl: '/btc.jpeg' },
+  { name: "BTC Tee: Medium (Womens)", price: 5, imageUrl: '/btc.jpeg' },
+
+  { name: "BTC Tee: Large (Mens)", price: 5, imageUrl: '/btc.jpeg' },
 
   { name: "Coin Tee: XS", price: 10, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9600_b4e81208-fd06-4205-b0d8-739bcaa527ac.jpg?v=1707459407" },
   { name: "Coin Tee: Small", price: 10, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9600_b4e81208-fd06-4205-b0d8-739bcaa527ac.jpg?v=1707459407" },
