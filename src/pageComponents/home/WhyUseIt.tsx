@@ -30,7 +30,7 @@ const products = [
 
   { name: "Base Tee: XS", price: 15, imageUrl: '/baseT.png' },
   { name: "Base Tee: Small", price: 15, imageUrl: '/baseT.png' },
-  // { name: "Base Tee: Medium", price: 15, imageUrl: '/baseT.png' },
+  { name: "Base Tee: Medium", price: 15, imageUrl: '/baseT.png' },
   { name: "Base Tee: Large", price: 15, imageUrl: '/baseT.png' },
   { name: "Base Tee: XL", price: 15, imageUrl: '/baseT.png' },
   { name: "Base Tee: 2XL", price: 15, imageUrl: '/baseT.png' },
