@@ -17,7 +17,7 @@ const products = [
   // { name: "Base Hat", price: 10, imageUrl: '/baseHat.png' },
   { name: "Socks (Unisex)", price: 5, imageUrl: '/socks.png' },
 
-  { name: "Onchain summer sunglasses", price: 5, imageUrl: "https://www.lockerroomsportsapparel.com/cdn/shop/products/c24.jpg?v=1681920691" },
+  // { name: "Onchain summer sunglasses", price: 5, imageUrl: "https://www.lockerroomsportsapparel.com/cdn/shop/products/c24.jpg?v=1681920691" },
   { name: "Bit by Bit Childrens Book", price: 25, imageUrl: '/book.png' },
   // { name: "BTC Tee: Medium (Womens only)", price: 5, imageUrl: '/btc.jpeg' },
   // { name: "BTC Tee: Large (Mens)", price: 5, imageUrl: '/btc.jpeg' },
@@ -35,7 +35,7 @@ const products = [
   { name: "Base Tee: XL ONLY", price: 15, imageUrl: '/baseT.png' },
   { name: "Base Tee: 2XL ONLY", price: 15, imageUrl: '/baseT.png' },
 
-  
+
   // { name: "Shadowy Super Coder Hoodie: Extra Small", price: 25, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9694.jpg?v=1707459485" },
   // { name: "Shadowy Super Coder Hoodie: Small", price: 25, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9694.jpg?v=1707459485" },
   // { name: "Shadowy Super Coder Hoodie: Medium", price: 25, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9694.jpg?v=1707459485" },
