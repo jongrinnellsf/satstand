@@ -35,6 +35,7 @@ const products = [
   { name: "Base Tee: XL ONLY", price: 15, imageUrl: '/baseT.png' },
   { name: "Base Tee: 2XL ONLY", price: 15, imageUrl: '/baseT.png' },
 
+  
   // { name: "Shadowy Super Coder Hoodie: Extra Small", price: 25, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9694.jpg?v=1707459485" },
   // { name: "Shadowy Super Coder Hoodie: Small", price: 25, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9694.jpg?v=1707459485" },
   // { name: "Shadowy Super Coder Hoodie: Medium", price: 25, imageUrl: "https://coinbaseshop.com/cdn/shop/files/20240203_845a_Photoshoot_Coinbase-Merch-Q1_IMGP9694.jpg?v=1707459485" },
