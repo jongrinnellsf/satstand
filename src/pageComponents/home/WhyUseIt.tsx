@@ -13,7 +13,7 @@ import { ArrowRightIcon } from '@radix-ui/react-icons';
 
 
 const products = [
-  { name: "Hat", price: 5, imageUrl: '/h.png' },
+  { name: "Hat", price: 3, imageUrl: '/h.png' },
   // { name: "Base Hat", price: 10, imageUrl: '/baseHat.png' },
   { name: "Socks (Unisex)", price: 5, imageUrl: '/socks.png' },
 
